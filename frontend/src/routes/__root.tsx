@@ -11,13 +11,16 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 export const Route = createRootRoute({
   component: () => (
     <>
-      <div className="p-4 px-20 flex justify-between items-center">
-        <Link to="/" className="[&.active]:font-bold text-lg">
-          Home
+    <div className="bg-[url('../Landing_Page_BG.png')] bg-[left_calc(-200%)_top_calc(100%)] bg-cover bg-no-repeat min-h-[calc(100vh-93px)]">
+      <div className="pt-6 bg-[url('../Landing_Page_BG.png')] bg-[left_calc(-200%)_top_calc(30%)] bg-cover bg-no-repeat"></div>
+      <div className="rounded-2xl mx-10 bg-white bg-opacity-75 p-4 px-20 flex justify-between items-center bg-blend-overlay">
+        <Link to="/" className="font-bold text-lg flex items-center">
+          <img src='../Landing_Page_graphic.png' alt='Logo' />
+          <div className="p-3 text-[#FB6209] text-3xl">Project Pals</div>
         </Link>{" "}
         <div className="flex ml-auto items-center flex gap-6">
           <DropdownMenu>
-            <DropdownMenuTrigger className="text-lg">
+            <DropdownMenuTrigger className="text-lg font-bold">
               Your Courses
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -33,19 +36,19 @@ export const Route = createRootRoute({
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link to="/login" className="[&.active]:font-bold text-lg">
+          <Link to="/login" className="[&.active]:font-extrabold text-lg font-bold">
             Login
           </Link>
           <Button asChild>
-            <Link to="/sign-up" className="text-lg">
-              Get Started!
+            <Link to="/sign-up" className="text-lg hover:bg-blue-600">
+              Sign Up
             </Link>
           </Button>
         </div>
       </div>
-      <hr />
-      <Outlet />
+      <Outlet/>
       <TanStackRouterDevtools />
+    </div>
     </>
   ),
 });
