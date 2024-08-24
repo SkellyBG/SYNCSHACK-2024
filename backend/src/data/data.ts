@@ -42,13 +42,14 @@ export interface Group {
   name: string;
   members: Array<string>; // Array of user IDs
   leader: string; // user ID of the user who is the creator of the group
-  courseId: number;
+  courseId: string;
 }
 
 export interface Request {
   requestId: string;
   userId: string;
   groupId: string;
+  courseId: string;
   status: string;
 }
 
