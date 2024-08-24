@@ -59,6 +59,17 @@ export interface Data {
   courses: Course[];
   groups: Group[];
   requests: Request[];
+  tokens: Token[];
+}
+
+export interface Token {
+  userId: string;
+  tokenId: string;
+}
+
+export interface LoginDetails {
+  email: string;
+  password: string;
 }
 
 import * as fs from "fs";
@@ -80,8 +91,8 @@ function parseData(): Data | null {
 
     // Map the parsed data into TypeScript structures
     const convertedData: Data = {
-      users: jsonData.users.map((user: any) => ({
-        userId: user.id,
+      users: jsonData.users.map((user: User) => ({
+        userId: user.userId,
         name: user.name,
         email: user.email,
         password: user.password,
@@ -90,28 +101,32 @@ function parseData(): Data | null {
         bio: user.bio,
         courses: user.courses,
       })),
-      newUsers: jsonData.newUsers.map((newUser: any) => ({
+      newUsers: jsonData.newUsers.map((newUser: NewUser) => ({
         newUserId: newUser.newUserId,
         name: newUser.name,
         email: newUser.email,
         password: newUser.password,
       })),
-      courses: jsonData.courses.map((course: any) => ({
-        courseId: course.id,
+      courses: jsonData.courses.map((course: Course) => ({
+        courseId: course.courseId,
         name: course.name,
         description: course.description,
       })),
-      groups: jsonData.groups.map((group: any) => ({
-        groupId: group.id,
+      groups: jsonData.groups.map((group: Group) => ({
+        groupId: group.groupId,
         name: group.name,
         members: group.members,
         courseId: group.courseId,
       })),
-      requests: jsonData.requests.map((request: any) => ({
-        requestId: request.id,
+      requests: jsonData.requests.map((request: Request) => ({
+        requestId: request.requestId,
         userId: request.userId,
         groupId: request.groupId,
         status: request.status,
+      })),
+      tokens: jsonData.tokens.map((token: Token) => ({
+        userId: token.userId,
+        tokenId: token.tokenId,
       })),
     };
 
@@ -135,6 +150,47 @@ export function writeData(data: Data): void {
   } catch (err) {
     console.error("Error writing data to file:", err);
   }
+}
+
+export function getUserFromToken(token: Token): User | string {
+  let data: Data = getData() as Data;
+  let users: User[] = data.users;
+  let newUsers: NewUser[] = data.newUsers;
+  let matchingUsers: User[] = users.filter(user => user.userId === token.userId);
+  let matchingNewUsers: NewUser[] = newUsers.filter(u => u.newUserId === token.userId);
+
+  if (matchingUsers.length == 0 && matchingNewUsers.length == 0) {
+    return "Error: No user matching this token";
+  } else if (matchingNewUsers.length != 0) {
+    let user: User = {
+      userId: matchingNewUsers[0].newUserId,
+      name: matchingNewUsers[0].name,
+      email: matchingNewUsers[0].email,
+      password: matchingNewUsers[0].password,
+      role: null,
+      targetGrade: null,
+      bio: null,
+      uni: null,
+      degree: null,
+      courses: null
+    }
+    return user;
+  } else {
+    return matchingUsers[0];
+  }
+
+}
+
+export function getTokenFromTokenId(tokenId: string): Token | string {
+  // Match tokenId to token
+  let data: Data = getData() as Data;
+  let tokens: Token[] = data.tokens;
+  let matchingTokens: Token[] = tokens.filter(t => t.tokenId === tokenId);
+  if (matchingTokens.length == 0) {
+    return "Error: Token invalid!";
+  }
+  let token: Token = matchingTokens[0];
+  return token;
 }
 
 // // Example usage
