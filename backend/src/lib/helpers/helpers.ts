@@ -1,42 +1,24 @@
 import { getData, Data, Group, User, Request, RequestStatus } from "../../data/data"
 
-export function getGroup(groupId: string): Group | null {
-    let data: Data = getData() as Data;
-    let groups: Group[] = data.groups;
+export function getGroup(groupId: string): Group | undefined {
+    const data: Data = getData() as Data;
+    const groups: Group[] = data.groups;
 
-    groups.forEach( (g) => {
-        if (g.groupId === groupId) {
-            return g;
-        }
-    });
-
-    return null;
+    return groups.find(group => group.groupId === groupId)
 }
 
-export function getUser(userId: string): User | null {
-    let data: Data = getData() as Data;
-    let users: User[] = data.users;
+export function getUser(userId: string): User | undefined {
+    const data: Data = getData() as Data;
+    const users: User[] = data.users;
 
-    users.forEach( (u) => {
-        if (u.userId === userId) {
-            return u;
-        }
-    })
-
-    return null;
+    return users.find(user => user.userId === userId);
 }
 
-export function getRequest(requestId: string): Request | null {
-    let data: Data = getData() as Data;
-    let requests: Request[] = data.requests;
+export function getRequest(requestId: string): Request | undefined {
+    const data: Data = getData() as Data;
+    const requests: Request[] = data.requests;
 
-    requests.forEach( (r) => {
-        if (r.requestId === requestId) {
-            return r;
-        }
-    })
-
-    return null;
+    return requests.find(request => request.requestId === requestId);
 }
 
 // different from getRequest. this function check if a user has already sent
