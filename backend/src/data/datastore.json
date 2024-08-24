@@ -29,7 +29,13 @@
       "password": "password3"
     }
   ],
-  "courses": [],
+  "courses": [
+    {
+      "courseId": "COMP1531",
+      "name": "Software Engineering Fundamentals",
+      "description": "dis the description"
+    }
+  ],
   "groups": [],
   "requests": [],
   "tokens": [

@@ -34,16 +34,20 @@ export enum Grade {
 }
 
 export interface Course {
-  courseId: number;
+  courseId: string;
   name: string;
   description: string;
 }
 
 export interface Group {
-  groupId: number;
+  groupId: string;
   name: string;
-  members: Array<number>; // Array of user IDs
-  courseId: number;
+  members: Array<User>; // Array of users
+  leader: string;
+  courseId: string;
+  description: string;
+  createdAt: string;
+  score?: number;
 }
 
 export interface Request {
