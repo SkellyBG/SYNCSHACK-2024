@@ -25,6 +25,7 @@ export function createRequest(newRequest: Omit<Request, "requestId">): Request |
         requestId: `${data.requests.length}`,
         userId: user.userId,
         groupId: requestedGroup.groupId,
+        courseId: requestedGroup.courseId,
         status: RequestStatus.PENDING
     }
 
@@ -74,7 +75,10 @@ export function acceptRequest(requestId: string): [boolean, string] {
     // withdraw all other requests sent by the user
     let pendingUserRequests: Request[] = getRequestsSentByUser(request.userId, RequestStatus.PENDING);
     pendingUserRequests.forEach( (r) => {
-        r.status = RequestStatus.WITHDRAWN;
+        // only withdraw requests for the course. not all requests
+        if (r.courseId === request.courseId) {
+            r.status = RequestStatus.WITHDRAWN;
+        }
     });
     
     return [true, "Request has been accepted"];
