@@ -19,6 +19,18 @@
       "targetGrade": "D",
       "bio": "I like dogs",
       "courses": "['COMP3900', 'DESN1000']"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "name": "Tuan Hung Pham",
+      "email": "thungpham.1811@gmail.com",
+      "password": "a",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "aaa",
+      "uni": "unsw",
+      "degree": "computer-science",
+      "courses": null
     }
   ],
   "newUsers": [
@@ -27,12 +39,6 @@
       "name": "name3",
       "email": "email3",
       "password": "password3"
-    },
-    {
-      "newUserId": "a0586183-b39f-4364-b6a6-62956996a102",
-      "name": "Tuan Hung Pham",
-      "email": "thungpham.1811@gmail.com",
-      "password": "a"
     }
   ],
   "courses": [
