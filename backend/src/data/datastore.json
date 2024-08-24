@@ -1,27 +1,52 @@
 {
   "users": [
     {
-      "userId": "c6221179-6ecc-4ec2-9552-5cab47344641",
+      "userId": "09df0dac-e40a-494e-871a-1a3fc8e80f9d",
       "name": "name2",
       "email": "email2",
       "password": "password2",
       "role": "leader",
       "targetGrade": "HD",
       "bio": "I like cats",
-      "uni": "UNSW",
-      "degree": "Comp Sci",
       "courses": "['COMP1531', 'DESN1000']"
+    },
+    {
+      "userId": "f67c839a-8d52-4f34-ad5b-15c34dbf17ce",
+      "name": "name",
+      "email": "email",
+      "password": "password",
+      "role": "writer",
+      "targetGrade": "D",
+      "bio": "I like dogs",
+      "courses": "['COMP3900', 'DESN1000']"
     }
   ],
   "newUsers": [
     {
-      "newUserId": "f67c839a-8d52-4f34-ad5b-15c34dbf17ce",
-      "name": "name",
-      "email": "email",
-      "password": "password"
+      "newUserId": "733ed845-f547-4103-b03c-7f86a11c0fea",
+      "name": "name3",
+      "email": "email3",
+      "password": "password3"
     }
   ],
   "courses": [],
   "groups": [],
-  "requests": []
+  "requests": [],
+  "tokens": [
+    {
+      "userId": "f67c839a-8d52-4f34-ad5b-15c34dbf17ce",
+      "tokenId": "0b50346b-0398-4838-a469-a99afd8d6dd3"
+    },
+    {
+      "tokenId": "84f76bdb-d6f0-4884-92c9-76df01ca9fca"
+    },
+    {
+      "userId": "f67c839a-8d52-4f34-ad5b-15c34dbf17ce",
+      "tokenId": "ffc370ff-6db1-48ed-a25e-e79109f31c16"
+    },
+    {
+      "userId": "733ed845-f547-4103-b03c-7f86a11c0fea",
+      "tokenId": "5619296a-03ab-4a2b-b1f1-23f931b321ff"
+    }
+  ]
 }
