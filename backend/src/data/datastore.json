@@ -27,6 +27,12 @@
       "name": "name3",
       "email": "email3",
       "password": "password3"
+    },
+    {
+      "newUserId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "name": "Tuan Hung Pham",
+      "email": "thungpham.1811@gmail.com",
+      "password": "a"
     }
   ],
   "courses": [],
@@ -47,6 +53,34 @@
     {
       "userId": "733ed845-f547-4103-b03c-7f86a11c0fea",
       "tokenId": "5619296a-03ab-4a2b-b1f1-23f931b321ff"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "9b967427-3917-48fc-a844-6c37aeb9485b"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "a3394610-a78b-44a7-822e-70efee8a32ff"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "f4906506-7459-4fcd-902e-0efcb46b008a"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "f31cd063-9596-4733-9b53-66a207786106"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "ffa30b95-22bf-4d47-bb55-810a0a053ef9"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "f29863a9-4d4d-4764-a524-428a0a1fd46d"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "920d465f-c0bb-47c1-aa65-4ddc738f3eef"
     }
   ]
 }
