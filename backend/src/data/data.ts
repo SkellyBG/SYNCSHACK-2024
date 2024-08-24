@@ -46,7 +46,7 @@ export interface Group {
 }
 
 export interface Request {
-  requestId: number;
+  requestId: string;
   userId: string;
   groupId: string;
   status: string;

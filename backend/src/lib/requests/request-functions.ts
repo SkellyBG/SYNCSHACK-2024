@@ -1,6 +1,5 @@
-import { group } from "console";
 import { getData, User, Group, Request, Data, RequestStatus } from "../../data/data";
-import { getUser, getGroup, getRequestsForGroup } from "../helpers/helpers";
+import { getUser, getGroup, getRequestsForGroup, getRequestsSentByUser, getRequest } from "../helpers/helpers";
 
 export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
     let data: Data = getData() as Data;
@@ -23,7 +22,7 @@ export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
 
     // create request object
     let request: Request = {
-        requestId: data.requests.length,
+        requestId: `${data.requests.length}`,
         userId: user.userId,
         groupId: requestedGroup.groupId,
         status: RequestStatus.pending
@@ -34,7 +33,38 @@ export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
     return true;
 }
 
-export function viewRequests(groupId: string, requestStatus?: RequestStatus): Request[] {
+export function viewRequestsForGroup(groupId: string, requestStatus?: RequestStatus): Request[] {
     // get all requests for that group
     return getRequestsForGroup(groupId, requestStatus);
+}
+
+export function viewRequestsSentByUser(userId: string, requestStatus?: RequestStatus): Request[] {
+    return getRequestsSentByUser(userId, requestStatus);
+}
+
+export function acceptRequest(requestId: string): boolean {
+    // get request
+    let requestResult = getRequest(requestId);
+    if (!requestResult) {
+        return false;
+    }
+    // else
+    let request: Request = requestResult as Request;
+    request.status = RequestStatus.accepted;
+
+    // get group
+    let groupResult = getGroup(request.groupId);
+    if (!groupResult) {
+        return false;
+    } 
+    // else
+    let group: Group = groupResult as Group;
+
+    // add user into the group
+    group.members.push(request.userId);
+
+    // withdraw all other requests sent by the user
+
+    
+    return true;
 }

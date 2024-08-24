@@ -26,7 +26,7 @@ export function getUser(userId: string): User | null {
     return null;
 }
 
-export function getRequest(requestId: number): Request | null {
+export function getRequest(requestId: string): Request | null {
     let data: Data = getData() as Data;
     let requests: Request[] = data.requests;
 
