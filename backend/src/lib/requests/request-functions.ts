@@ -84,3 +84,16 @@ export function rejectRequest(requestId: string): boolean {
 
     return true;
 }
+
+export function withdrawRequest(requestId: string): boolean {
+    // get request
+    let requestResult = getRequest(requestId);
+    if (!requestResult) {
+        return false;
+    }
+    // else
+    let request: Request = requestResult as Request;
+    request.status = RequestStatus.WITHDRAWN;
+
+    return true;
+}
