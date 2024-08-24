@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
-import { request } from "@/api/fetcher";
+import { postNoAuth } from "@/api/fetcher";
 
 export const Route = createFileRoute("/sign-up")({
   component: SignUp,
@@ -14,12 +14,13 @@ export const Route = createFileRoute("/sign-up")({
 
 function SignUp() {
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate({from: '/sign-up'});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { trigger } = useSWRMutation("/api/users", request);
+  const { trigger } = useSWRMutation("/api/users", postNoAuth);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -29,6 +30,8 @@ function SignUp() {
       try {
         await trigger({ name, email, password });
         enqueueSnackbar("Account created successfully", { variant: "success" });
+        navigate({to: '/login'});
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (e: any) {
         enqueueSnackbar(e.message, { variant: "error" });
       }
@@ -36,7 +39,7 @@ function SignUp() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center bg-gray-100">
       <div className="text-center mb-6">
         <h2 className="text-3xl font-bold text-center">
           Sign up for a new account

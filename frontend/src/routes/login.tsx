@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
 
@@ -14,15 +14,18 @@ export const Route = createFileRoute('/login')({
 function Login() {
   const { enqueueSnackbar } = useSnackbar();
   const [password, setPassword] = useState('');
+  const navigate = useNavigate({from: '/sign-up'});
+
 
   const handleSubmit = (_e: React.MouseEvent<HTMLButtonElement>) => {
       // Proceed with form submission (e.g., send data to server)
       console.log('Form submitted');
+      navigate({to: '/dashboard'});
   };
 
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center bg-gray-100">
       <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-center">Login to your existing account</h2>
       </div>

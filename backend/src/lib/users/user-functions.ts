@@ -2,17 +2,19 @@ import { v4 as uuidv4 } from "uuid";
 import { getData, NewUser, User, Data, writeData } from "@/src/data/data";
 
 // Create user
-export function addUser(newUser: Omit<NewUser, 'newUserId'>): NewUser | string {
+export function addUser(newUser: Omit<NewUser, "newUserId">): NewUser | string {
   let data: Data = getData() as Data;
   let newUsers: NewUser[] = data.newUsers;
 
   // Error check if email already exists
-  let matchingUsers: NewUser[] = newUsers.filter(user => user.email === newUser.email);
+  let matchingUsers: NewUser[] = newUsers.filter(
+    (user) => user.email === newUser.email
+  );
   if (matchingUsers.length != 0) {
     return "Error: email already exists!";
   }
 
-  const newUserId: string = uuidv4();  // Generate a new UUID
+  const newUserId: string = uuidv4(); // Generate a new UUID
   let newUserData: NewUser = {
     newUserId: newUserId,
     name: newUser.name,
@@ -28,6 +30,7 @@ export function addUser(newUser: Omit<NewUser, 'newUserId'>): NewUser | string {
   writeData(data);
 
   console.log("User added successfully!");
+  console.log(newUsers);
   return newUserData;
 }
 
@@ -38,7 +41,7 @@ export function completeUser(user: User): User {
   let newUsers: NewUser[] = data.newUsers;
 
   // Remove the new user from new users
-  let index: number = newUsers.findIndex(u => u.newUserId === user.userId);
+  let index: number = newUsers.findIndex((u) => u.newUserId === user.userId);
   if (index != -1) {
     newUsers.splice(index, 1);
     data.newUsers = newUsers;
@@ -64,10 +67,14 @@ export function viewOtherUser(targetUserId: string): User | string {
   let newUsers: NewUser[] = data.newUsers;
   let found = false;
   // Check users
-  let matchingUsers: User[] = users.filter(user => user.userId === targetUserId);
+  let matchingUsers: User[] = users.filter(
+    (user) => user.userId === targetUserId
+  );
 
   // Check newUsers
-  let matchingNewUsers: NewUser[] = newUsers.filter(user => user.newUserId === targetUserId);
+  let matchingNewUsers: NewUser[] = newUsers.filter(
+    (user) => user.newUserId === targetUserId
+  );
 
   if (matchingUsers.length == 0 && matchingNewUsers.length == 0) {
     return "Error: target user id not found";
@@ -82,8 +89,8 @@ export function viewOtherUser(targetUserId: string): User | string {
       bio: null,
       uni: null,
       degree: null,
-      courses: null
-    }
+      courses: null,
+    };
     return user;
   } else {
     return matchingUsers[0];
@@ -97,10 +104,14 @@ export function viewCurUser(targetUserId: string): User | string {
   let newUsers: NewUser[] = data.newUsers;
   let found = false;
   // Check users
-  let matchingUsers: User[] = users.filter(user => user.userId === targetUserId);
+  let matchingUsers: User[] = users.filter(
+    (user) => user.userId === targetUserId
+  );
 
   // Check newUsers
-  let matchingNewUsers: NewUser[] = newUsers.filter(user => user.newUserId === targetUserId);
+  let matchingNewUsers: NewUser[] = newUsers.filter(
+    (user) => user.newUserId === targetUserId
+  );
 
   if (matchingUsers.length == 0 && matchingNewUsers.length == 0) {
     return "Error: target user id not found";
@@ -115,8 +126,8 @@ export function viewCurUser(targetUserId: string): User | string {
       bio: null,
       uni: null,
       degree: null,
-      courses: null
-    }
+      courses: null,
+    };
     return user;
   } else {
     return matchingUsers[0];
