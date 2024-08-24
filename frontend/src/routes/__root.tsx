@@ -73,10 +73,10 @@ function Root() {
             )}
             {!me && (
               <>
-                <Link to="/login" className="hover:underline text-lg">
+                <Link to="/login" className="hover:underline text-lg font-bold">
                   Login
                 </Link>
-                <Button asChild>
+                <Button asChild className = "hover:bg-blue-600">
                   <Link to="/sign-up" className="hover:underline text-lg">
                     Sign Up
                   </Link>
