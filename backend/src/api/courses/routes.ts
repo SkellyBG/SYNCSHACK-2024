@@ -5,7 +5,11 @@ const router = express.Router();
 
 // View courses
 router.get("/unsw/courses/:courseid/groups", (req, res) => {
-    res.status(200).json({ hi: "hello world from api!" });
+    const token: string | undefined = req.headers.authorization;
+    if (typeof (token) == undefined) {
+        res.status(400).json({ error: 'Error: Not logged in!' });
+    }
+    
     const courseId = req.params.courseid;
     const sortBy = req.query.sortby as string ?? "recommended";
     const groups = viewGroups(courseId, sortBy);
