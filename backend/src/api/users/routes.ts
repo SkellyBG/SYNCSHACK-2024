@@ -1,6 +1,6 @@
 import express from "express";
 import { NewUser, User } from "../../data/data";
-import { addUser, completeUser, viewUser } from '../../lib/users/user-functions';
+import { addUser, completeUser, viewOtherUser, viewCurUser } from '../../lib/users/user-functions';
 
 const router = express.Router();
 
@@ -22,10 +22,21 @@ router.post("/users/:userid", (req, res) => {
   res.status(200).json({ user: user });
 });
 
-// View user
+// View user - another user
 router.get("/users/:userid", (req, res) => {
   const payload: string = req.params.userid;
-  const user: User | string = viewUser(payload);
+  const user: User | string = viewOtherUser(payload);
+  if (typeof (user) == 'string') {
+    res.status(400).json({ error: user });
+  } else {
+    res.status(200).json({ user: user });
+  }
+});
+
+// View user - current user
+router.get("/users/:token", (req, res) => {
+  const payload: string = req.params.token;
+  const user: User | string = viewCurUser(payload);
   if (typeof (user) == 'string') {
     res.status(400).json({ error: user });
   } else {

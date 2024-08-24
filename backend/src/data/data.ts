@@ -3,10 +3,12 @@ export interface User {
   name: string;
   email: string;
   password: string;
-  role: TeamRole;
-  targetGrade: Grade;
-  bio: string;
-  courses: Array<string>;
+  role: TeamRole | null;
+  targetGrade: Grade | null;
+  bio: string | null;
+  uni: string | null;
+  degree: string | null;
+  courses: Array<string> | null;
 }
 
 export interface NewUser {
@@ -63,7 +65,12 @@ import * as fs from "fs";
 
 const filePath: string = "src/data/datastore.json";
 
-export function getData(): Data | null {
+const data = parseData() as Data;
+export function getData(): Data {
+  return data;
+}
+
+function parseData(): Data | null {
   try {
     // Read the file content as a string
     const data = fs.readFileSync(filePath, "utf-8");
@@ -114,6 +121,7 @@ export function getData(): Data | null {
     return null;
   }
 }
+
 
 export function writeData(data: Data): void {
   try {
