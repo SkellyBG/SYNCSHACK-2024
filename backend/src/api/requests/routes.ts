@@ -1,6 +1,12 @@
 import express from "express"
-import { createRequest, viewRequestsForGroup, viewRequestsSentByUser, 
-    acceptRequest, rejectRequest, withdrawRequest } from "../../lib/requests/request-functions"
+import { 
+    createRequest, 
+    viewRequestsForGroup, 
+    viewRequestsSentByUser, 
+    acceptRequest, 
+    rejectRequest, 
+    withdrawRequest
+} from "../../lib/requests/request-functions"
 
 const router = express.Router();
 
@@ -29,9 +35,15 @@ router.post("/view_requests/:groupid", (req, res) => {
 });
 
 // view requests sent by a user
-router.post("view_requests/:userid", (req, res) => {
+router.post("view_requests/", (req, res) => {
     const payload = req.body;
-    const userRequests = viewRequestsSentByUser(req.params.userid, payload.requestStatus);
+
+    const tokenString: string | undefined = req.headers.authorization;
+    if (typeof (tokenString) == undefined) {
+        res.status(400).json({ error: 'Error: Not logged in!' });
+    }
+
+    const userRequests = viewRequestsSentByUser(tokenString as string, payload.requestStatus);
 
     if (userRequests.length > 0) {
         res.status(200).json({ userRequests: userRequests });
