@@ -27,16 +27,18 @@ export function getUser(userId: string): User | null {
     return null;
 }
 
-export function getAllRequestsForGroup(groupId: string, requestStatus?: RequestStatus): Request[] {
+export function getRequestsForGroup(groupId: string, requestStatus?: RequestStatus): Request[] {
     let data: Data = getData() as Data;
     let requests: Request[] = data.requests;
 
     let requestsForGroup: Request[] = [];
     requests.forEach( (r) => {
         if (r.groupId === groupId) {
+            // if no request status specified, push request into array
             if (!requestStatus) {
                 requestsForGroup.push(r);
                 return;
+            // if request status specified, check if matches before pushing
             } else if (r.status === requestStatus) {
                 requestsForGroup.push(r);
                 return;
