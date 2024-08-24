@@ -14,8 +14,8 @@ const router = express.Router();
 
 // create request
 router.post("/request_group/:groupid", (req, res) => {
-    const payload: Omit<Request, "requestId"> = req.body;
-    const request = createRequest(payload);
+    const payload: Omit<Request, "requestId" | "groupId" | "status"> = req.body;
+    const request = createRequest(req.params.groupid, payload);
 
     if (typeof(request) === "object") {
         res.status(200).json({ request: request });
@@ -37,7 +37,7 @@ router.get("/view_requests/:groupid", (req, res) => {
 });
 
 // view requests sent by a user
-router.get("view_requests/", (req, res) => {
+router.get("/view_requests", (req, res) => {
     const payload = req.body;
 
     const tokenString: string | undefined = req.headers.authorization;
@@ -55,7 +55,7 @@ router.get("view_requests/", (req, res) => {
 });
 
 // accept requests
-router.post("accept_request/:requestid", (req, res) => {
+router.post("/accept_request/:requestid", (req, res) => {
     const accept = acceptRequest(req.params.requestid);
 
     if (accept[0]) {
@@ -66,7 +66,7 @@ router.post("accept_request/:requestid", (req, res) => {
 })
 
 // reject request
-router.post("reject_request/:requestid", (req, res) => {
+router.post("/reject_request/:requestid", (req, res) => {
     const reject = rejectRequest(req.params.requestid);
 
     if (reject[0]) {
@@ -77,7 +77,7 @@ router.post("reject_request/:requestid", (req, res) => {
 })
 
 // withdraw request
-router.post("withdraw_request/:requestid", (req, res) => {
+router.post("/withdraw_request/:requestid", (req, res) => {
     const withdraw = withdrawRequest(req.params.requestid);
 
     if (withdraw[0]) {
