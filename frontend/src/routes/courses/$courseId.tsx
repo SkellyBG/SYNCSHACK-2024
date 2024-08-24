@@ -1,4 +1,5 @@
 import { fetcherWithAuth, postWithAuth } from "@/api/fetcher";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/courses/$courseId")({
 function Course() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [createGroupOpen, setCreateGroupOpen] = useState(false);
 
   const { courseId } = Route.useParams();
   const { data, isLoading } = useSWR(
@@ -47,6 +49,9 @@ function Course() {
     try {
       await trigger({ name, description });
       enqueueSnackbar("Group successfully created!", { variant: "success" });
+      setDescription("");
+      setName("");
+      setCreateGroupOpen(!createGroupOpen);
     } catch (e) {
       enqueueSnackbar(e.message, { variant: "error" });
     }
@@ -57,7 +62,7 @@ function Course() {
       <div className="min-h-screen p-8 bg-gray-100">
         <div className="flex justify-between mb-6">
           <h2 className="text-3xl font-bold text-left">Course: {courseId}</h2>
-          <Dialog>
+          <Dialog open={createGroupOpen} onOpenChange={setCreateGroupOpen}>
             <DialogTrigger asChild>
               <Button>Create new group</Button>
             </DialogTrigger>
@@ -113,16 +118,28 @@ function Course() {
                   <CardTitle>{group.name}</CardTitle>
                   <CardDescription>
                     Group creator:{" "}
-                    {
-                      group.members.filter(
-                        (member) => member.userId === group.leader
-                      )[0].name
-                    }
+                    {group.members.filter(
+                      (member) => member.userId === group.leader
+                    )[0]?.name ?? group.members[0].name}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <h1>{group.members.length} members</h1>
-                  <p>{group.description}</p>
+                  <div className="flex justify-between">
+                    <div className="flex gap-4 items-center">
+                      Members:{" "}
+                      {group.members.map((member) => (
+                        <Avatar className="w-8 h-8">
+                          <AvatarImage
+                            src="https://github.com/shadcn.png"
+                            alt="@shadcn"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                      ))}
+                    </div>
+
+                    <Button>View Group</Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
