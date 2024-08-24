@@ -42,24 +42,28 @@ export function viewRequestsSentByUser(userId: string, requestStatus?: RequestSt
     return getRequestsSentByUser(userId, requestStatus);
 }
 
-export function acceptRequest(requestId: string): boolean {
+export function acceptRequest(requestId: string): [boolean, string] {
     // get request
     let requestResult = getRequest(requestId);
     if (!requestResult) {
-        return false;
+        return [false, "Request could not be found"];
     }
     // else
     let request: Request = requestResult as Request;
 
     // if request has already been withdrawn then it can't be accepted
-    if (request.status === RequestStatus.WITHDRAWN || request.status === RequestStatus.REJECTED) {
-        return false;
+    if (request.status === RequestStatus.WITHDRAWN) {
+        return [false, "Request has already been withdrawn and cannot be accepted anymore"];
+    } else if (request.status === RequestStatus.REJECTED) {
+        return [false, "Request has already been rejected and cannot be accepted anymore"];
+    } else if (request.status === RequestStatus.ACCEPTED) {
+        return [false, "Request has already been accepted"]
     }
 
     // get group
     let groupResult = getGroup(request.groupId);
     if (!groupResult) {
-        return false;
+        return [false, "Group could not be found"];
     } 
     // else
     let group: Group = groupResult as Group;
@@ -73,41 +77,49 @@ export function acceptRequest(requestId: string): boolean {
         r.status = RequestStatus.WITHDRAWN;
     });
     
-    return true;
+    return [true, "Request has been accepted"];
 }
 
-export function rejectRequest(requestId: string): boolean {
+export function rejectRequest(requestId: string): [boolean, string] {
     // get request
     let requestResult = getRequest(requestId);
     if (!requestResult) {
-        return false;
+        return [false, "Request could not be found"];
     }
     // else
     let request: Request = requestResult as Request;
 
     // if request has already been withdrawn then it can't be rejected
-    if (request.status === RequestStatus.PENDING) {
-        request.status = RequestStatus.REJECTED;
-        return true;
-    } else {
-        return false;
+    if (request.status === RequestStatus.ACCEPTED) {
+        return [false, "Request has already been accepted and cannot be rejected"];
+    } else if (request.status === RequestStatus.WITHDRAWN) {
+        return [false, "Request has already been withdrawn and cannot be rejected"];
+    } else if (request.status === RequestStatus.REJECTED) {
+        return [false, "Request has already been rejected"]
     }
+
+    request.status = RequestStatus.REJECTED;
+    return [true, "Request rejected"];
 }
 
-export function withdrawRequest(requestId: string): boolean {
+export function withdrawRequest(requestId: string): [boolean, string] {
     // get request
     let requestResult = getRequest(requestId);
     if (!requestResult) {
-        return false;
+        return [false, "Request could not be found"];
     }
     // else
     let request: Request = requestResult as Request;
     
     // if request has already been rejected/accepted then it can't be withdrawn
-    if (request.status === RequestStatus.PENDING) {
-        request.status = RequestStatus.WITHDRAWN;
-        return true;
-    } else {
-        return false;
+    if (request.status === RequestStatus.ACCEPTED) {
+        return [false, "Request has already been accepted and cannot be withdrawn"];
+    } else if (request.status === RequestStatus.REJECTED) {
+        return [false, "Request has already been rejected and cannot be withdrawn"];
+    } else if (request.status === RequestStatus.WITHDRAWN) {
+        return [false, "Request has already been withdrawn"]
     }
+
+    request.status = RequestStatus.WITHDRAWN;
+    return [true, "Request withdrawn"];
 }
