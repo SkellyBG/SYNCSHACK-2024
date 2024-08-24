@@ -15,6 +15,7 @@ import { Route as SignUpImport } from "./routes/sign-up";
 import { Route as LoginImport } from "./routes/login";
 import { Route as IndexImport } from "./routes/index";
 import { Route as DashboardIndexImport } from "./routes/dashboard/index";
+import { Route as DashboardQuizImport } from "./routes/dashboard/quiz";
 import { Route as CoursesCourseIdImport } from "./routes/courses/$courseId";
 
 // Create/Update Routes
@@ -36,6 +37,11 @@ const IndexRoute = IndexImport.update({
 
 const DashboardIndexRoute = DashboardIndexImport.update({
   path: "/dashboard/",
+  getParentRoute: () => rootRoute,
+} as any);
+
+const DashboardQuizRoute = DashboardQuizImport.update({
+  path: "/dashboard/quiz",
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -76,6 +82,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof CoursesCourseIdImport;
       parentRoute: typeof rootRoute;
     };
+    "/dashboard/quiz": {
+      id: "/dashboard/quiz";
+      path: "/dashboard/quiz";
+      fullPath: "/dashboard/quiz";
+      preLoaderRoute: typeof DashboardQuizImport;
+      parentRoute: typeof rootRoute;
+    };
     "/dashboard/": {
       id: "/dashboard/";
       path: "/dashboard";
@@ -93,6 +106,7 @@ export const routeTree = rootRoute.addChildren({
   LoginRoute,
   SignUpRoute,
   CoursesCourseIdRoute,
+  DashboardQuizRoute,
   DashboardIndexRoute,
 });
 
@@ -108,6 +122,7 @@ export const routeTree = rootRoute.addChildren({
         "/login",
         "/sign-up",
         "/courses/$courseId",
+        "/dashboard/quiz",
         "/dashboard/"
       ]
     },
@@ -122,6 +137,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/courses/$courseId": {
       "filePath": "courses/$courseId.tsx"
+    },
+    "/dashboard/quiz": {
+      "filePath": "dashboard/quiz.tsx"
     },
     "/dashboard/": {
       "filePath": "dashboard/index.tsx"

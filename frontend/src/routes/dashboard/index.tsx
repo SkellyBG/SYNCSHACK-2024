@@ -1,5 +1,6 @@
+import useSWR from 'swr';
 import { Card, CardContent } from '@/components/ui/card'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import {
   Avatar,
   AvatarFallback,
@@ -17,6 +18,7 @@ import {
 } from "@/components/ui/command"
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { fetcher } from '@/api/fetcher';
 
 
 export const Route = createFileRoute('/dashboard/')({
@@ -25,6 +27,8 @@ export const Route = createFileRoute('/dashboard/')({
 
 function Dashboard() {
   const [open, setOpen] = useState(false);
+  const { data, error, isLoading } = useSWR('/api/user', fetcher);
+
   return (
     <div className="p-24 bg-gray-100 min-h-[calc(100vh-65px)]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -35,17 +39,23 @@ function Dashboard() {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <h1>Your name here</h1>
-          <Separator />
+          <Separator className="mb-5 mt-5"/>
           <h1>Complete your profile</h1>
-          <FaArrowRightLong />
+          <Link to="/dashboard/quiz">
+            <FaArrowRightLong size={30}/>
+          </Link>
 
           </CardContent>
         </Card>
 
         <Card className="p-10">
           <CardContent className="flex flex-col items-center justify-center">
-            <Button className="w-full" onClick={() => setOpen(true)}>Add new courses</Button>
-            <h1>Your current courses</h1>
+            <div className="w-full flex justify-between items-center">
+              <h1>Your current course(s)</h1>
+              <Button onClick={() => setOpen(true)}>Add new courses</Button>
+            </div>
+
+            <Separator className="mb-5 mt-5"/>
 
             <CommandDialog open={open} onOpenChange={setOpen}>
               <CommandInput placeholder="Type a command or search..." />

@@ -13,7 +13,6 @@ export async function postNoAuth(url: string, { arg }: { arg: any }) {
   return response.json();
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function postWithAuth(
   url: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,7 +22,7 @@ export async function postWithAuth(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${arg.token}`,
+      Authorization: `${arg.token}`,
     },
     body: JSON.stringify(arg.body),
   });
