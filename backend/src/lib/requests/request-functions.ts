@@ -1,6 +1,6 @@
 import { group } from "console";
 import { getData, User, Group, Request, Data, RequestStatus } from "../../data/data";
-import { getUser, getGroup } from "../helpers/helpers";
+import { getUser, getGroup, getRequestsForGroup } from "../helpers/helpers";
 
 export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
     let data: Data = getData() as Data;
@@ -32,5 +32,9 @@ export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
     data.requests.push(request);
     console.log("New request created successfully.")
     return true;
+}
 
+export function viewRequests(groupId: string, requestStatus?: RequestStatus): Request[] {
+    // get all requests for that group
+    return getRequestsForGroup(groupId, requestStatus);
 }
