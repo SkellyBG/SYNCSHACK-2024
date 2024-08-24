@@ -8,11 +8,8 @@ const router = express.Router();
 router.post("/request_group/:groupid", (req, res) => {
     const payload = req.body;
     const token = createRequest(payload);
-
-    // add error checking for if user has already sent a request
-    // to the group
-
-    if (token) {
+    
+    if (typeof(token) === "object") {
         res.status(200).json({ token: token });
     } else {
         res.status(400).json({ error: token });
