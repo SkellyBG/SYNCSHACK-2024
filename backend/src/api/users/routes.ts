@@ -1,19 +1,21 @@
 import express from "express";
-import { NewUser } from "../../data/data";
-import { addUser } from '../../lib/users/user-functions';
+import { NewUser, User } from "../../data/data";
+import { addUser, completeUser } from '../../lib/users/user-functions';
 
 const router = express.Router();
 
 // Create a new user
 router.post("/users", (req, res) => {
   const payload: Omit<NewUser, 'newUserId'> = req.body;
-  addUser(payload);
-  res.status(200).json({ hi: "hello world from api!" });
+  const user: NewUser = addUser(payload);
+  res.status(200).json({ user: user });
 });
 
 // Complete user
 router.post("/users/:userid", (req, res) => {
-  res.status(200).json({ hi: "hello world from api!" });
+  const payload: User = req.body;
+  const user: User = completeUser(payload);
+  res.status(200).json({ user: user });
 });
 
 // View user
