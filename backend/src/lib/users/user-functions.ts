@@ -183,3 +183,23 @@ export function viewCurUser(tokenId: string): User | string {
 }
 
 // Delete user
+
+export function updateUserCourses(userId: string, courses: string[]): string {
+  let data = getData() as Data;
+  let users: User[] = data.users;
+
+  // Find the user by userId
+  let userIndex = users.findIndex(user => user.userId === userId);
+  if (userIndex === -1) {
+    return "Error: User not found!";
+  }
+
+  // Update the user's courses
+  users[userIndex].courses = courses;
+
+  // Write the updated data
+  data.users = users;
+  writeData(data);
+
+  return "User courses updated successfully!";
+}

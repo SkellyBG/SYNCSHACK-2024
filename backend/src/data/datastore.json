@@ -28,6 +28,16 @@
       "role": "leader",
       "targetGrade": "HD",
       "bio": "aaa",
+      "courses": null
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
       "uni": "unsw",
       "degree": "computer-science",
       "courses": null
@@ -45,12 +55,6 @@
       "name": "Tuan Hung Pham",
       "email": "thungpham.1811@gmail.com",
       "password": "a"
-    },
-    {
-      "newUserId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "name": "oklol",
-      "email": "ok.lol@gmail.com",
-      "password": "oklol"
     }
   ],
   "courses": [
@@ -78,10 +82,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "ttt",
-      "createdAt": "2024-08-24T15:38:43.070Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "e287e350-640d-48a3-acb4-8354ddc4a1d0",
@@ -100,10 +101,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "ttt",
-      "createdAt": "2024-08-24T15:38:51.261Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "046746c1-3aba-4f0e-99d2-4d52749e6eff",
@@ -122,10 +120,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "ttt",
-      "createdAt": "2024-08-24T15:38:52.955Z"
+      "courseId": "COMP1511"
     }
   ],
   "requests": [],
@@ -174,13 +169,12 @@
       "tokenId": "920d465f-c0bb-47c1-aa65-4ddc738f3eef"
     },
     {
-<<<<<<< HEAD
       "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
       "tokenId": "4abd791b-c169-4e6d-be46-0a6d86c2defe"
-=======
-      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
-      "tokenId": "3878127a-c009-4d9e-8637-2bacd1b550e9"
->>>>>>> 9243798ceb88e802855d2bba5e31d960f9c0e8ee
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "tokenId": "5b7cc8d7-8c76-40a6-b2a7-b94243cf2eab"
     }
   ]
 }

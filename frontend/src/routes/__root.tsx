@@ -18,7 +18,7 @@ function Root() {
 
   return (
     <>
-      <div className="bg-[url('../Landing_Page_BG.png')] bg-[left_calc(-200%)_top_calc(100%)] bg-cover bg-no-repeat min-h-[calc(100vh-93px)]">
+      <div className="bg-[url('../Landing_Page_BG.png')] bg-[left_calc(-200%)_top_calc(100%)] bg-cover bg-no-repeat min-h-[calc(100vh-93px)] font-inter">
         <div className="pt-6 bg-[url('../Landing_Page_BG.png')] bg-[left_calc(-200%)_top_calc(30%)] bg-cover bg-no-repeat"></div>
         <div className="rounded-2xl mx-10 bg-white bg-opacity-75 p-4 px-20 flex justify-between items-center bg-blend-overlay">
           <Link to="/" className="font-bold text-lg flex items-center">
@@ -44,6 +44,20 @@ function Root() {
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
+
+                <div className="relative flex items-center">
+                  <Button asChild variant='outline'>
+                    <Link to="/requests" className="relative text-lg border-2 border-blue-500 text-blue-500 hover:border-blue-600 hover:text-blue-600">
+                      Requests
+                    </Link>
+                  </Button>
+                  {/* Ping Effect */}
+                  <span className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3">
+                    <span className="animate-ping absolute inline-flex h-4 w-4 rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
+                  </span>
+                </div>
+
                 <Button asChild>
                   <Link to="/dashboard" className="hover:underline text-lg">
                     Dashboard

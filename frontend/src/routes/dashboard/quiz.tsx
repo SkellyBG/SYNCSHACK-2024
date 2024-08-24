@@ -131,74 +131,76 @@ function Quiz() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center bg-gray-100">
-      <h1 className="text-3xl font-bold text-center mb-10">
-        Let's finalize your profile!
-      </h1>
-      <Card className="w-full max-w-md">
-        <CardContent className="pt-5 flex flex-col items-center justify-center">
-          <div></div>
-          <Label className="mb-2 mt-5">What is your university?</Label>
-          <ComboBox
-            open={universityOpen}
-            onOpenChange={setUniversityOpen}
-            value={universityValue}
-            onValueChange={setUniversityValue}
-            list={universities}
-          />
+    <div className="bg-[url('../../Landing_Page_BG.png')] bg-cover bg-no-repeat min-h-[calc(100vh-117px)] font-inter">
+      <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center">
+        <h1 className="text-3xl font-bold text-center py-5">
+          Let's finalize your profile!
+        </h1>
+        <Card className="w-full max-w-md bg-white bg-opacity-70 shadow-md">
+          <CardContent className="pt-5 flex flex-col items-center justify-center">
+            <div></div>
+            <Label className="mb-2 mt-5">What is your university?</Label>
+            <ComboBox
+              open={universityOpen}
+              onOpenChange={setUniversityOpen}
+              value={universityValue}
+              onValueChange={setUniversityValue}
+              list={universities}
+            />
 
-          <Label className="mb-2 mt-5">What is your degree?</Label>
-          <ComboBox
-            open={degreeOpen}
-            onOpenChange={setDegreeOpen}
-            value={degreeValue}
-            onValueChange={setDegreeValue}
-            list={degrees}
-          />
+            <Label className="mb-2 mt-5">What is your degree?</Label>
+            <ComboBox
+              open={degreeOpen}
+              onOpenChange={setDegreeOpen}
+              value={degreeValue}
+              onValueChange={setDegreeValue}
+              list={degrees}
+            />
 
-          <Label className="mb-2 mt-5">What is your target grade?</Label>
-          <ComboBox
-            open={gradeOpen}
-            onOpenChange={setGradeOpen}
-            value={gradeValue}
-            onValueChange={setGradeValue}
-            list={grades}
-          />
+            <Label className="mb-2 mt-5">What is your target grade?</Label>
+            <ComboBox
+              open={gradeOpen}
+              onOpenChange={setGradeOpen}
+              value={gradeValue}
+              onValueChange={setGradeValue}
+              list={grades}
+            />
 
-          <Label className="mb-2 mt-5">
-            What is your ideal role in a group?
-          </Label>
-          <ComboBox
-            open={roleOpen}
-            onOpenChange={setRoleOpen}
-            value={roleValue}
-            onValueChange={setRoleValue}
-            list={roles}
-          />
+            <Label className="mb-2 mt-5">
+              What is your ideal role in a group?
+            </Label>
+            <ComboBox
+              open={roleOpen}
+              onOpenChange={setRoleOpen}
+              value={roleValue}
+              onValueChange={setRoleValue}
+              list={roles}
+            />
 
-          <Label className="mb-2 mt-5">Tell something about yourself!</Label>
-          <Textarea
-            content={bioValue}
-            onChange={(e) => setBioValue(e.target.value)}
-          ></Textarea>
+            <Label className="mb-2 mt-5">Tell us something about yourself!</Label>
+            <Textarea
+              content={bioValue}
+              onChange={(e) => setBioValue(e.target.value)}
+            ></Textarea>
 
-          <div className="mb-5 mt-5" />
-          <Button
-            disabled={
-              !(
-                universityValue &&
-                degreeValue &&
-                gradeValue &&
-                roleValue &&
-                bioValue
-              )
-            }
-            onClick={handleSubmit}
-          >
-            I'm done!
-          </Button>
-        </CardContent>
-      </Card>
+            <div className="mb-5 mt-5" />
+            <Button
+              disabled={
+                !(
+                  universityValue &&
+                  degreeValue &&
+                  gradeValue &&
+                  roleValue &&
+                  bioValue
+                )
+              }
+              onClick={handleSubmit}
+            >
+              I'm done!
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
