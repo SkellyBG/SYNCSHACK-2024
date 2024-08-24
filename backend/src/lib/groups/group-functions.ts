@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getData, User, Group, Data, writeData, Token, getTokenFromTokenId } from '../../data/data';
 
 // Create group
-export function addGroup(group: Omit<Group, 'groupId' | 'members' | 'courseId' | 'createdAt'>, tokenId: string, courseId: string): Group | string {
+export function addGroup(group: Omit<Group, 'groupId' | 'members' | 'leader' | 'courseId' | 'createdAt'>, tokenId: string, courseId: string): Group | string {
   let token: Token | string = getTokenFromTokenId(tokenId);
 
   if (typeof (token) == 'string') {

@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Create a new group
 router.post("/unsw/courses/:courseid/groups", (req, res) => {
-    const payload: Omit<Group, 'groupId' | 'members' | 'courseId' | 'createdAt'> = req.body;
+    const payload: Omit<Group, 'groupId' | 'members' | 'leader' | 'courseId' | 'createdAt'> = req.body;
     const token: string | undefined = req.headers.authorization;
     if (typeof (token) == undefined) {
         res.status(400).json({ error: 'Error: Not logged in!' });

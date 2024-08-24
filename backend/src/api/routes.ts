@@ -2,7 +2,7 @@ import express from "express";
 import helloWorldRoutes from "./hello-world/routes";
 import userRoutes from "./users/routes";
 import courseRoutes from "./courses/routes";
-import groupRoutes from "./courses/routes";
+import groupRoutes from "./groups/routes";
 
 const router = express.Router();
 router.use(helloWorldRoutes);
