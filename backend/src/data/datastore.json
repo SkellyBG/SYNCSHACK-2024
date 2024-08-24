@@ -19,6 +19,18 @@
       "targetGrade": "D",
       "bio": "I like dogs",
       "courses": "['COMP3900', 'DESN1000']"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "name": "Tuan Hung Pham",
+      "email": "thungpham.1811@gmail.com",
+      "password": "a",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "aaa",
+      "uni": "unsw",
+      "degree": "computer-science",
+      "courses": null
     }
   ],
   "newUsers": [
@@ -27,10 +39,89 @@
       "name": "name3",
       "email": "email3",
       "password": "password3"
+    },
+    {
+      "newUserId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "name": "Tuan Hung Pham",
+      "email": "thungpham.1811@gmail.com",
+      "password": "a"
     }
   ],
-  "courses": [],
-  "groups": [],
+  "courses": [
+    {
+      "courseId": "COMP1531",
+      "name": "Software Engineering Fundamentals",
+      "description": "dis the description"
+    }
+  ],
+  "groups": [
+    {
+      "groupId": "a8d24eae-efe5-4692-a99e-28d7cd234f5a",
+      "name": "aaa",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "uni": "unsw",
+          "degree": "computer-science",
+          "courses": null
+        }
+      ],
+      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
+      "courseId": "COMP1511",
+      "description": "ttt",
+      "createdAt": "2024-08-24T15:38:43.070Z"
+    },
+    {
+      "groupId": "e287e350-640d-48a3-acb4-8354ddc4a1d0",
+      "name": "aaa",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "uni": "unsw",
+          "degree": "computer-science",
+          "courses": null
+        }
+      ],
+      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
+      "courseId": "COMP1511",
+      "description": "ttt",
+      "createdAt": "2024-08-24T15:38:51.261Z"
+    },
+    {
+      "groupId": "046746c1-3aba-4f0e-99d2-4d52749e6eff",
+      "name": "aaa",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "uni": "unsw",
+          "degree": "computer-science",
+          "courses": null
+        }
+      ],
+      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
+      "courseId": "COMP1511",
+      "description": "ttt",
+      "createdAt": "2024-08-24T15:38:52.955Z"
+    }
+  ],
   "requests": [],
   "tokens": [
     {
@@ -47,6 +138,38 @@
     {
       "userId": "733ed845-f547-4103-b03c-7f86a11c0fea",
       "tokenId": "5619296a-03ab-4a2b-b1f1-23f931b321ff"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "9b967427-3917-48fc-a844-6c37aeb9485b"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "a3394610-a78b-44a7-822e-70efee8a32ff"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "f4906506-7459-4fcd-902e-0efcb46b008a"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "f31cd063-9596-4733-9b53-66a207786106"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "ffa30b95-22bf-4d47-bb55-810a0a053ef9"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "f29863a9-4d4d-4764-a524-428a0a1fd46d"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "920d465f-c0bb-47c1-aa65-4ddc738f3eef"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "3878127a-c009-4d9e-8637-2bacd1b550e9"
     }
   ]
 }

@@ -1,3 +1,4 @@
+import { useMe } from "@/api/hooks";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -19,36 +20,48 @@ export const Route = createRootRoute({
           <div className="p-3 text-[#FB6209] text-3xl">Project Pals</div>
         </Link>{" "}
         <div className="flex ml-auto items-center flex gap-6">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="text-lg font-bold">
-              Your Courses
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {["COMP1511", "COMP1521", "COMP1531"].map((course) => (
-                <DropdownMenuItem key={course}>
-                  <div className="flex items-center justify-between">
-                    <Link to={`/courses/${course}`} className="text-lg">
-                      {course}
-                    </Link>
-                  </div>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Link to="/login" className="[&.active]:font-extrabold text-lg font-bold">
-            Login
-          </Link>
-          <Button asChild>
-            <Link to="/sign-up" className="text-lg hover:bg-blue-600">
-              Sign Up
-            </Link>
-          </Button>
+          {me && (
+            <>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="hover:underline text-lg  font-bold">
+                  Your Courses
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {["COMP1511", "COMP1521", "COMP1531"].map((course) => (
+                    <DropdownMenuItem key={course}>
+                      <div className="flex items-center justify-between">
+                        <Link to={`/courses/${course}`} className="text-lg">
+                          {course}
+                        </Link>
+                      </div>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button asChild>
+                <Link to="/dashboard" className="hover:underline text-lg">
+                  Dashboard
+                </Link>
+              </Button>
+            </>
+          )}
+          {!me && (
+            <>
+              <Link to="/login" className="hover:underline text-lg">
+                Login
+              </Link>
+              <Button asChild>
+                <Link to="/sign-up" className="hover:underline text-lg">
+                  Sign Up
+                </Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
       <Outlet/>
       <TanStackRouterDevtools />
     </div>
     </>
-  ),
-});
+  );
+}

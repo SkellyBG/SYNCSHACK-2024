@@ -1,20 +1,33 @@
 import { v4 as uuidv4 } from "uuid";
-import { getData, NewUser, User, Data, writeData, LoginDetails, Token, getTokenFromTokenId } from "@/src/data/data";
+import {
+  getData,
+  NewUser,
+  User,
+  Data,
+  writeData,
+  LoginDetails,
+  Token,
+  getTokenFromTokenId,
+} from "@/src/data/data";
 
 // Create user
-export function addUser(newUser: Omit<NewUser, 'newUserId'>): NewUser | string {
+export function addUser(newUser: Omit<NewUser, "newUserId">): NewUser | string {
   let data: Data = getData() as Data;
   let newUsers: NewUser[] = data.newUsers;
   let users: User[] = data.users;
 
   // Error check if email already exists
-  let matchingUsers: User[] = users.filter(user => user.email === newUser.email);
-  let matchingNewUsers: NewUser[] = newUsers.filter(user => user.email === newUser.email);
+  let matchingUsers: User[] = users.filter(
+    (user) => user.email === newUser.email
+  );
+  let matchingNewUsers: NewUser[] = newUsers.filter(
+    (user) => user.email === newUser.email
+  );
   if (matchingUsers.length != 0 || matchingNewUsers.length != 0) {
     return "Error: email already exists!";
   }
 
-  const newUserId: string = uuidv4();  // Generate a new UUID
+  const newUserId: string = uuidv4(); // Generate a new UUID
   let newUserData: NewUser = {
     newUserId: newUserId,
     name: newUser.name,
@@ -41,8 +54,12 @@ export function loginUser(login: LoginDetails): string {
   let tokens: Token[] = data.tokens;
 
   // Error check if login is correct
-  let matchingNewUsers: NewUser[] = newUsers.filter(user => user.email === login.email);
-  let matchingUsers: User[] = users.filter(user => user.email === login.email);
+  let matchingNewUsers: NewUser[] = newUsers.filter(
+    (user) => user.email === login.email
+  );
+  let matchingUsers: User[] = users.filter(
+    (user) => user.email === login.email
+  );
   let userId = "";
   if (matchingNewUsers.length != 0) {
     if (matchingNewUsers[0].password != login.password) {
@@ -60,11 +77,11 @@ export function loginUser(login: LoginDetails): string {
     return "Error: No such email!";
   }
   // Create new token if login successful
-  let tokenId: string = uuidv4();  // Generate a new UUID
+  let tokenId: string = uuidv4(); // Generate a new UUID
   let token: Token = {
     userId: userId,
-    tokenId: tokenId
-  }
+    tokenId: tokenId,
+  };
 
   tokens.push(token);
   data.tokens = tokens;
@@ -83,12 +100,12 @@ export function completeUser(user: User, tokenId: string): User | string {
 
   // Match tokenId to token
   let token: Token | string = getTokenFromTokenId(tokenId);
-  if (typeof (token) == 'string') {
+  if (typeof token == "string") {
     return token;
   }
 
   // Check that user is not already completed
-  let matchingUsers: User[] = users.filter(u => u.userId === user.userId);
+  let matchingUsers: User[] = users.filter((u) => u.userId === user.userId);
   if (matchingUsers.length != 0) {
     return "Error: User has already completed form!";
   }
@@ -99,7 +116,7 @@ export function completeUser(user: User, tokenId: string): User | string {
   }
 
   // Remove the new user from new users
-  let index: number = newUsers.findIndex(u => u.newUserId === user.userId);
+  let index: number = newUsers.findIndex((u) => u.newUserId === user.userId);
   if (index != -1) {
     newUsers.splice(index, 1);
     data.newUsers = newUsers;
@@ -124,10 +141,14 @@ export function viewOtherUser(targetUserId: string): User | string {
   let users: User[] = data.users;
   let newUsers: NewUser[] = data.newUsers;
   // Check users
-  let matchingUsers: User[] = users.filter(user => user.userId === targetUserId);
+  let matchingUsers: User[] = users.filter(
+    (user) => user.userId === targetUserId
+  );
 
   // Check newUsers
-  let matchingNewUsers: NewUser[] = newUsers.filter(user => user.newUserId === targetUserId);
+  let matchingNewUsers: NewUser[] = newUsers.filter(
+    (user) => user.newUserId === targetUserId
+  );
 
   if (matchingUsers.length == 0 && matchingNewUsers.length == 0) {
     return "Error: target user id not found";
@@ -142,8 +163,8 @@ export function viewOtherUser(targetUserId: string): User | string {
       bio: null,
       uni: null,
       degree: null,
-      courses: null
-    }
+      courses: null,
+    };
     return user;
   } else {
     return matchingUsers[0];
@@ -153,12 +174,12 @@ export function viewOtherUser(targetUserId: string): User | string {
 // View cur user
 export function viewCurUser(tokenId: string): User | string {
   let token: Token | string = getTokenFromTokenId(tokenId);
-  if (typeof (token) == 'string') {
-    return 'Error: Invalid token!';
+  if (typeof token == "string") {
+    return "Error: Invalid token!";
   }
   console.log("viewing myself with userId:");
   console.log(token.userId);
-  return (viewOtherUser(token.userId));
+  return viewOtherUser(token.userId);
 }
 
 // Delete user

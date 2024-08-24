@@ -34,23 +34,35 @@ export enum Grade {
 }
 
 export interface Course {
-  courseId: number;
+  courseId: string;
   name: string;
   description: string;
 }
 
 export interface Group {
-  groupId: number;
+  groupId: string;
   name: string;
-  members: Array<number>; // Array of user IDs
-  courseId: number;
+  members: Array<User>; // Array of users
+  leader: string;
+  courseId: string;
+  description: string;
+  createdAt: string;
+  score?: number;
 }
 
 export interface Request {
-  requestId: number;
-  userId: number;
-  groupId: number;
+  requestId: string;
+  userId: string;
+  groupId: string;
+  courseId: string;
   status: string;
+}
+
+export enum RequestStatus {
+  PENDING = "Pending",
+  ACCEPTED = "Accepted",
+  REJECTED = "Rejected",
+  WITHDRAWN = "Withdrawn"
 }
 
 export interface Data {
