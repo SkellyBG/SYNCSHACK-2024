@@ -23,6 +23,11 @@ router.post("/unsw/courses/:courseid/groups", (req, res) => {
 
 // View group
 router.get("/unsw/courses/:courseid/groups/:groupid", (req, res) => {
+    const token: string | undefined = req.headers.authorization;
+    if (typeof (token) == undefined) {
+        res.status(400).json({ error: 'Error: Not logged in!' });
+    }
+    
     const courseId: string = req.params.courseid;
     const groupId: string = req.params.groupid;
     const group: Group | string = viewGroup(courseId, groupId);
