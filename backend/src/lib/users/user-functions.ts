@@ -35,5 +35,15 @@ export function completeUser(user: User): User {
 // Edit user
 
 // View user
+export function viewUser(targetUserId: string): User | string {
+  let data: Data = getData() as Data;
+  let users: User[] = data.users;
+  let matchingUsers: User[] = users.filter(user => user.userId === targetUserId);
+  if (matchingUsers.length == 0) {
+    return "Error: target user id not found";
+  } else {
+    return matchingUsers[0];
+  }
+}
 
 // Delete user
