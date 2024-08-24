@@ -5,15 +5,15 @@ import { Link } from "@tanstack/react-router";
 export const Route = createFileRoute('/')({
   component: () => (
   <>
-    <body className="bg-[url('../Landing_Page_BG.png')] bg-bottom bg-cover bg-no-repeat min-h-[calc(100vh-147px)]">
+    <body className="bg-[url('../Landing_Page_BG.png')] bg-bottom bg-cover bg-no-repeat min-h-[calc(100vh-148px)]">
     <div className="px-[calc(15rem)] my-8 relative flex items-center center justify-between">
       <div>
         <span>
           <div className="text-5xl font-bold">Find the right team for <span className="text-white text-5xl font-bold">you<span className="text-5xl font-bold">.</span></span></div>
         </span>
         <div className="mt-4 text-xl">Team members who share your academic goals, preferred communication platform, and working style!</div>
-        <Button asChild className="mt-4">
-          <Link to="/sign-up" className="text-lg hover:bg-blue-600">
+        <Button asChild className="mt-4 hover:bg-blue-600 hover:blue-600">
+          <Link to="/sign-up" className="text-lg">
             Get Started!
           </Link>
         </Button>
