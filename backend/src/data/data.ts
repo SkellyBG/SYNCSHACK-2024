@@ -53,10 +53,10 @@ export interface Request {
 }
 
 export enum RequestStatus {
-  pending = "Pending",
-  accepted = "Accepted",
-  rejected = "Rejected",
-  withdrawn = "Withdrawn"
+  PENDING = "Pending",
+  ACCEPTED = "Accepted",
+  REJECTED = "Rejected",
+  WITHDRAWN = "Withdrawn"
 }
 
 export interface Data {
