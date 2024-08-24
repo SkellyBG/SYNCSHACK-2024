@@ -1,5 +1,5 @@
 import express from "express";
-import { viewGroups } from '../../lib/courses/course-functions';
+import { viewGroups } from '../../lib/courses/course-function';
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/unsw/courses/:courseid/groups", (req, res) => {
     res.status(200).json({ hi: "hello world from api!" });
     const courseId = req.params.courseid;
-    const sortBy = req.query.sortby ?? "recommended";
+    const sortBy = req.query.sortby as string ?? "recommended";
     const groups = viewGroups(courseId, sortBy);
 
     if (typeof (groups) == 'string') {
