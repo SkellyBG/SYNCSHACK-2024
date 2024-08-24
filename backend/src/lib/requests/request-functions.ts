@@ -1,13 +1,13 @@
 import { getData, User, Group, Request, Data, RequestStatus } from "../../data/data";
 import { getUser, getGroup, getRequestsForGroup, getRequestsSentByUser, getRequest } from "../helpers/helpers";
 
-export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
+export function createRequest(newRequest: Omit<Request, "requestId">): Request | null {
     let data: Data = getData() as Data;
 
     // find the group from the group ID given in newRequest
     let groupResult: Group | null = getGroup(newRequest.groupId);
     if (!groupResult) {
-        return false;
+        return null;
     } 
     // else
     let requestedGroup: Group = groupResult as Group;
@@ -15,7 +15,7 @@ export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
     // find the user from the user ID given in newRequest
     let userResult: User | null = getUser(newRequest.userId);
     if (!userResult) {
-        return false;
+        return null;
     }
     // else
     let user: User = userResult as User;
@@ -30,7 +30,7 @@ export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
 
     data.requests.push(request);
     console.log("New request created successfully.")
-    return true;
+    return request;
 }
 
 export function viewRequestsForGroup(groupId: string, requestStatus?: RequestStatus): Request[] {
