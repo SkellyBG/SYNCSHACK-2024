@@ -1,7 +1,27 @@
 {
-    "users": [],
-    "newUsers": [],
-    "courses": [],
-    "groups": [],
-    "requests": []
+  "users": [
+    {
+      "userId": "c6221179-6ecc-4ec2-9552-5cab47344641",
+      "name": "name2",
+      "email": "email2",
+      "password": "password2",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "I like cats",
+      "uni": "UNSW",
+      "degree": "Comp Sci",
+      "courses": "['COMP1531', 'DESN1000']"
+    }
+  ],
+  "newUsers": [
+    {
+      "newUserId": "f67c839a-8d52-4f34-ad5b-15c34dbf17ce",
+      "name": "name",
+      "email": "email",
+      "password": "password"
+    }
+  ],
+  "courses": [],
+  "groups": [],
+  "requests": []
 }
