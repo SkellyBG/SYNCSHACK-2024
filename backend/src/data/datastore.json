@@ -19,6 +19,18 @@
       "targetGrade": "D",
       "bio": "I like dogs",
       "courses": "['COMP3900', 'DESN1000']"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "name": "Tuan Hung Pham",
+      "email": "thungpham.1811@gmail.com",
+      "password": "a",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "aaa",
+      "uni": "unsw",
+      "degree": "computer-science",
+      "courses": null
     }
   ],
   "newUsers": [
@@ -48,7 +60,74 @@
       "description": "dis the description"
     }
   ],
-  "groups": [],
+  "groups": [
+    {
+      "groupId": "a8d24eae-efe5-4692-a99e-28d7cd234f5a",
+      "name": "aaa",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "uni": "unsw",
+          "degree": "computer-science",
+          "courses": null
+        }
+      ],
+      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
+      "courseId": "COMP1511",
+      "description": "ttt",
+      "createdAt": "2024-08-24T15:38:43.070Z"
+    },
+    {
+      "groupId": "e287e350-640d-48a3-acb4-8354ddc4a1d0",
+      "name": "aaa",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "uni": "unsw",
+          "degree": "computer-science",
+          "courses": null
+        }
+      ],
+      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
+      "courseId": "COMP1511",
+      "description": "ttt",
+      "createdAt": "2024-08-24T15:38:51.261Z"
+    },
+    {
+      "groupId": "046746c1-3aba-4f0e-99d2-4d52749e6eff",
+      "name": "aaa",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "uni": "unsw",
+          "degree": "computer-science",
+          "courses": null
+        }
+      ],
+      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
+      "courseId": "COMP1511",
+      "description": "ttt",
+      "createdAt": "2024-08-24T15:38:52.955Z"
+    }
+  ],
   "requests": [],
   "tokens": [
     {
@@ -95,8 +174,13 @@
       "tokenId": "920d465f-c0bb-47c1-aa65-4ddc738f3eef"
     },
     {
+<<<<<<< HEAD
       "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
       "tokenId": "4abd791b-c169-4e6d-be46-0a6d86c2defe"
+=======
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "3878127a-c009-4d9e-8637-2bacd1b550e9"
+>>>>>>> 9243798ceb88e802855d2bba5e31d960f9c0e8ee
     }
   ]
 }

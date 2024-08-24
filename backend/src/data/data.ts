@@ -51,10 +51,18 @@ export interface Group {
 }
 
 export interface Request {
-  requestId: number;
-  userId: number;
-  groupId: number;
+  requestId: string;
+  userId: string;
+  groupId: string;
+  courseId: string;
   status: string;
+}
+
+export enum RequestStatus {
+  PENDING = "Pending",
+  ACCEPTED = "Accepted",
+  REJECTED = "Rejected",
+  WITHDRAWN = "Withdrawn"
 }
 
 export interface Data {
