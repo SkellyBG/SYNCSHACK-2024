@@ -6,8 +6,13 @@ const router = express.Router();
 
 // Create a new user
 router.post("/users", (req, res) => {
-  const payload: NewUser = req.body;
+  const payload: Omit<NewUser, 'newUserId'> = req.body;
   addUser(payload);
+  res.status(200).json({ hi: "hello world from api!" });
+});
+
+// Complete user
+router.post("/users/:userid", (req, res) => {
   res.status(200).json({ hi: "hello world from api!" });
 });
 
