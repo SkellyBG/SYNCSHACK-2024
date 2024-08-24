@@ -1,3 +1,4 @@
+import { write } from "fs";
 import { 
     getData, 
     User, 
@@ -6,7 +7,8 @@ import {
     Data, 
     Token,
     RequestStatus,
-    getTokenFromTokenId
+    getTokenFromTokenId,
+    writeData
 } from "../../data/data";
 import { 
     getUser, 
@@ -17,16 +19,16 @@ import {
     checkIfRequestExists 
 } from "../helpers/helpers";
 
-export function createRequest(newRequest: Omit<Request, "requestId">): Request | string {
+export function createRequest(groupId: string, newRequest: Omit<Request, "requestId" | "groupId" | "status">): Request | string {
     let data: Data = getData() as Data;
 
     // first check if user has already sent a request
-    if (checkIfRequestExists(newRequest.userId, newRequest.groupId)) {
+    if (checkIfRequestExists(newRequest.userId, groupId)) {
         return "A request has already been sent to this group"
     }
 
     // find the group from the group ID given in newRequest
-    let groupResult: Group | undefined = getGroup(newRequest.groupId);
+    let groupResult: Group | undefined = getGroup(groupId);
     if (!groupResult) {
         return "Group cannot be found";
     } 
@@ -45,12 +47,13 @@ export function createRequest(newRequest: Omit<Request, "requestId">): Request |
     let request: Request = {
         requestId: `${data.requests.length}`,
         userId: user.userId,
-        groupId: requestedGroup.groupId,
+        groupId: groupId,
         courseId: requestedGroup.courseId,
         status: RequestStatus.PENDING
     }
 
     data.requests.push(request);
+    writeData(data);
     console.log("New request created successfully.")
     return request;
 }
@@ -112,6 +115,7 @@ export function acceptRequest(requestId: string): [boolean, string] {
             r.status = RequestStatus.WITHDRAWN;
         }
     });
+    writeData(getData());
     
     return [true, "Request has been accepted"];
 }
@@ -135,6 +139,7 @@ export function rejectRequest(requestId: string): [boolean, string] {
     }
 
     request.status = RequestStatus.REJECTED;
+    writeData(getData());
     return [true, "Request rejected"];
 }
 
@@ -157,5 +162,6 @@ export function withdrawRequest(requestId: string): [boolean, string] {
     }
 
     request.status = RequestStatus.WITHDRAWN;
+    writeData(getData());
     return [true, "Request withdrawn"];
 }
