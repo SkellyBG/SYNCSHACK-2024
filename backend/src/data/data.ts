@@ -10,6 +10,7 @@ export interface User {
 }
 
 export interface NewUser {
+  newUserId: number;
   name: string;
   email: string;
   password: string;
@@ -73,7 +74,7 @@ export function getData(): Data | null {
     // Map the parsed data into TypeScript structures
     const convertedData: Data = {
       users: jsonData.users.map((user: any) => ({
-        id: user.id,
+        userId: user.id,
         name: user.name,
         email: user.email,
         password: user.password,
@@ -83,23 +84,24 @@ export function getData(): Data | null {
         courses: user.courses
       })),
       newUsers: jsonData.newUsers.map((newUser: any) => ({
+        newUserId: newUser.newUserId,
         name: newUser.name,
         email: newUser.email,
         password: newUser.password
       })),
       courses: jsonData.courses.map((course: any) => ({
-        id: course.id,
+        courseId: course.id,
         name: course.name,
         description: course.description
       })),
       groups: jsonData.groups.map((group: any) => ({
-        id: group.id,
+        groupId: group.id,
         name: group.name,
         members: group.members,
         courseId: group.courseId
       })),
       requests: jsonData.requests.map((request: any) => ({
-        id: request.id,
+        requestId: request.id,
         userId: request.userId,
         groupId: request.groupId,
         status: request.status
