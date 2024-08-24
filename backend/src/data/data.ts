@@ -41,6 +41,7 @@ export interface Group {
   groupId: number;
   name: string;
   members: Array<number>; // Array of user IDs
+  leader: number; // user ID of the user who is the creator of the group
   courseId: number;
 }
 
