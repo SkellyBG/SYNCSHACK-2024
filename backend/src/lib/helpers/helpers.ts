@@ -39,6 +39,21 @@ export function getRequest(requestId: string): Request | null {
     return null;
 }
 
+// different from getRequest. this function check if a user has already sent
+// a request to a particular group
+export function checkIfRequestExists(userId: string, groupId: string): boolean {
+    const data: Data = getData() as Data;
+    const requests: Request[] = data.requests;
+
+    for (let i = 0; i < requests.length; i ++) {
+        if (requests[i].userId === userId && requests[i].groupId === groupId) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 export function getRequestsForGroup(groupId: string, requestStatus?: RequestStatus): Request[] {
     let data: Data = getData() as Data;
     let requests: Request[] = data.requests;
