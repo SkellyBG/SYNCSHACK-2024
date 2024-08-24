@@ -11,7 +11,7 @@ export function addUser(newUser: Omit<NewUser, 'newUserId'>): NewUser | String {
   if (matchingUsers.length != 0) {
     return "Error: email already exists!";
   }
-
+  
   const newUserId: string = uuidv4();  // Generate a new UUID
   let newUserData: NewUser = {
     newUserId: newUserId,
