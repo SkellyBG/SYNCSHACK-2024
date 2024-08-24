@@ -26,7 +26,7 @@ export function createRequest(newRequest: Omit<Request, "requestId">): Request |
     }
 
     // find the group from the group ID given in newRequest
-    let groupResult: Group | null = getGroup(newRequest.groupId);
+    let groupResult: Group | undefined = getGroup(newRequest.groupId);
     if (!groupResult) {
         return "Group cannot be found";
     } 
@@ -34,7 +34,7 @@ export function createRequest(newRequest: Omit<Request, "requestId">): Request |
     let requestedGroup: Group = groupResult as Group;
 
     // find the user from the user ID given in newRequest
-    let userResult: User | null = getUser(newRequest.userId);
+    let userResult: User | undefined = getUser(newRequest.userId);
     if (!userResult) {
         return "User cannot be found";
     }
@@ -97,7 +97,7 @@ export function acceptRequest(requestId: string): [boolean, string] {
     let group: Group = groupResult as Group;
 
     // add user into the group
-    let userResult: User | null = getUser(request.userId);
+    let userResult: User | undefined = getUser(request.userId);
     if (!userResult) {
         return [false, "User cannot be found"];
     }
