@@ -7,68 +7,68 @@ const router = express.Router();
 // create request
 router.post("/request_group/:groupid", (req, res) => {
     const payload = req.body;
-    const token = createRequest(payload);
-    
-    if (typeof(token) === "object") {
-        res.status(200).json({ token: token });
+    const request = createRequest(payload);
+
+    if (typeof(request) === "object") {
+        res.status(200).json({ request: request });
     } else {
-        res.status(400).json({ error: token });
+        res.status(400).json({ error: request });
     }
 });
 
 // view requests for group
 router.post("/view_requests/:groupid", (req, res) => {
     const payload = req.body;
-    const token = viewRequestsForGroup(req.params.groupid, payload.requestStatus);
+    const groupRequests = viewRequestsForGroup(req.params.groupid, payload.requestStatus);
 
-    if (token.length > 0) {
-        res.status(200).json({ token: token });
+    if (groupRequests.length > 0) {
+        res.status(200).json({ groupRequests: groupRequests });
     } else {
-        res.status(200).json({ error: token });
+        res.status(200).json({ error: groupRequests });
     }
 });
 
 // view requests sent by a user
 router.post("view_requests/:userid", (req, res) => {
     const payload = req.body;
-    const token = viewRequestsSentByUser(req.params.userid, payload.requestStatus);
+    const userRequests = viewRequestsSentByUser(req.params.userid, payload.requestStatus);
 
-    if (token.length > 0) {
-        res.status(200).json({ token: token });
+    if (userRequests.length > 0) {
+        res.status(200).json({ userRequests: userRequests });
     } else {
-        res.status(200).json({ error: token });
+        res.status(200).json({ error: userRequests });
     }
 });
 
 // accept requests
 router.post("accept_request/:requestid", (req, res) => {
-    const token = acceptRequest(req.params.requestid);
+    const accept = acceptRequest(req.params.requestid);
 
-    if (token[0]) {
-        res.status(200).json({ token: token[1] });
+    if (accept[0]) {
+        res.status(200).json({ acceptedString: accept[1] });
     } else {
-        res.status(400).json({ token: token[1] });
+        res.status(400).json({ failedString: accept[1] });
     }
 })
 
 // reject request
 router.post("reject_request/:requestid", (req, res) => {
-    const token = rejectRequest(req.params.requestid);
+    const reject = rejectRequest(req.params.requestid);
 
-    if (token[0]) {
-        res.status(200).json({ token: token[1] });
+    if (reject[0]) {
+        res.status(200).json({ rejectedString: reject[1] });
     } else {
-        res.status(400).json({ token: token[1] });
+        res.status(400).json({ failedString: reject[1] });
     }
 })
 
 // withdraw request
 router.post("withdraw_request/:requestid", (req, res) => {
-    const token = withdrawRequest(req.params.requestid);
+    const withdraw = withdrawRequest(req.params.requestid);
 
-    if (token[0]) {
-        res.status(200).json({ token: token[1] });
+    if (withdraw[0]) {
+        res.status(200).json({ withdrawnString: withdraw[1] });
     } else {
-        res.status(400).json({ token: token[1] });
+        res.status(400).json({ failedString: withdraw[1] });
     }
 })
