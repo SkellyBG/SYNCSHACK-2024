@@ -1,3 +1,4 @@
+import useSWRMutation from "swr/mutation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -5,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
+import { request } from "@/api/fetcher";
 
 export const Route = createFileRoute("/sign-up")({
   component: SignUp,
@@ -12,34 +14,45 @@ export const Route = createFileRoute("/sign-up")({
 
 function SignUp() {
   const { enqueueSnackbar } = useSnackbar();
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const { trigger } = useSWRMutation("/api/users", request);
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      enqueueSnackbar('Passwords do not match', {variant: "error"});
+      enqueueSnackbar("Passwords do not match", { variant: "error" });
     } else {
-      // Proceed with form submission (e.g., send data to server)
-      console.log('Form submitted');
+      try {
+        await trigger({ name, email, password });
+        enqueueSnackbar("Account created successfully", { variant: "success" });
+      } catch (e: any) {
+        enqueueSnackbar(e.message, { variant: "error" });
+      }
     }
   };
-
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
       <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-center">Sign up for a new account</h2>
+        <h2 className="text-3xl font-bold text-center">
+          Sign up for a new account
+        </h2>
       </div>
 
       <Card className="w-full max-w-md">
         <CardContent className="pt-5">
           <form>
             <div className="mb-6">
-            <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Name</Label>
               <Input
                 type="text"
                 id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
                 className="w-full px-4 py-2 border rounded-md"
               />
@@ -49,6 +62,8 @@ function SignUp() {
               <Input
                 type="email"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 className="w-full px-4 py-2 border rounded-md"
               />
@@ -81,7 +96,7 @@ function SignUp() {
           </form>
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-600">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Link to="/login" className="text-blue-500 hover:underline">
                 Log in
               </Link>

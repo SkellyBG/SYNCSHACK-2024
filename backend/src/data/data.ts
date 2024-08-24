@@ -21,14 +21,14 @@ export enum TeamRole {
   Researcher = "researcher",
   Writer = "writer",
   Developer = "developer",
-  Designer = "designer"
+  Designer = "designer",
 }
 
 export enum Grade {
   HD = "HD",
   D = "D",
   CR = "CR",
-  PS = "PS"
+  PS = "PS",
 }
 
 export interface Course {
@@ -59,14 +59,14 @@ export interface Data {
   requests: Request[];
 }
 
-import * as fs from 'fs';
+import * as fs from "fs";
 
-const filePath: string = 'backend/src/data/data.json';
+const filePath: string = "src/data/datastore.json";
 
 export function getData(): Data | null {
   try {
     // Read the file content as a string
-    const data = fs.readFileSync(filePath, 'utf-8');
+    const data = fs.readFileSync(filePath, "utf-8");
 
     // Parse the JSON string into an object
     const jsonData = JSON.parse(data);
@@ -81,36 +81,36 @@ export function getData(): Data | null {
         role: user.role,
         targetGrade: user.targetGrade,
         bio: user.bio,
-        courses: user.courses
+        courses: user.courses,
       })),
       newUsers: jsonData.newUsers.map((newUser: any) => ({
         newUserId: newUser.newUserId,
         name: newUser.name,
         email: newUser.email,
-        password: newUser.password
+        password: newUser.password,
       })),
       courses: jsonData.courses.map((course: any) => ({
         courseId: course.id,
         name: course.name,
-        description: course.description
+        description: course.description,
       })),
       groups: jsonData.groups.map((group: any) => ({
         groupId: group.id,
         name: group.name,
         members: group.members,
-        courseId: group.courseId
+        courseId: group.courseId,
       })),
       requests: jsonData.requests.map((request: any) => ({
         requestId: request.id,
         userId: request.userId,
         groupId: request.groupId,
-        status: request.status
-      }))
+        status: request.status,
+      })),
     };
 
     return convertedData;
   } catch (err) {
-    console.error('Error reading or parsing the file:', err);
+    console.error("Error reading or parsing the file:", err);
     return null;
   }
 }
@@ -121,11 +121,11 @@ export function writeData(data: Data): void {
     const jsonData = JSON.stringify(data, null, 2);
 
     // Write the JSON string to the specified file
-    fs.writeFileSync(filePath, jsonData, 'utf-8');
+    fs.writeFileSync(filePath, jsonData, "utf-8");
 
-    console.log('Data successfully written to file.');
+    console.log("Data successfully written to file.");
   } catch (err) {
-    console.error('Error writing data to file:', err);
+    console.error("Error writing data to file:", err);
   }
 }
 
