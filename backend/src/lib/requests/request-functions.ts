@@ -50,7 +50,11 @@ export function acceptRequest(requestId: string): boolean {
     }
     // else
     let request: Request = requestResult as Request;
-    request.status = RequestStatus.ACCEPTED;
+
+    // if request has already been withdrawn then it can't be accepted
+    if (request.status === RequestStatus.WITHDRAWN || request.status === RequestStatus.REJECTED) {
+        return false;
+    }
 
     // get group
     let groupResult = getGroup(request.groupId);
@@ -80,9 +84,14 @@ export function rejectRequest(requestId: string): boolean {
     }
     // else
     let request: Request = requestResult as Request;
-    request.status = RequestStatus.REJECTED;
 
-    return true;
+    // if request has already been withdrawn then it can't be rejected
+    if (request.status === RequestStatus.PENDING) {
+        request.status = RequestStatus.REJECTED;
+        return true;
+    } else {
+        return false;
+    }
 }
 
 export function withdrawRequest(requestId: string): boolean {
@@ -93,7 +102,12 @@ export function withdrawRequest(requestId: string): boolean {
     }
     // else
     let request: Request = requestResult as Request;
-    request.status = RequestStatus.WITHDRAWN;
-
-    return true;
+    
+    // if request has already been rejected/accepted then it can't be withdrawn
+    if (request.status === RequestStatus.PENDING) {
+        request.status = RequestStatus.WITHDRAWN;
+        return true;
+    } else {
+        return false;
+    }
 }
