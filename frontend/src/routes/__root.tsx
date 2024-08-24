@@ -11,13 +11,13 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 export const Route = createRootRoute({
   component: () => (
     <>
-      <div className="p-4 px-20 flex justify-between items-center">
-        <Link to="/" className="[&.active]:font-bold text-lg">
+      <div className="px-20 flex justify-between items-center h-16">
+        <Link to="/" className="hover:underline text-lg">
           Home
         </Link>{" "}
         <div className="flex ml-auto items-center flex gap-6">
           <DropdownMenu>
-            <DropdownMenuTrigger className="text-lg">
+            <DropdownMenuTrigger className="hover:underline text-lg">
               Your Courses
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -33,11 +33,11 @@ export const Route = createRootRoute({
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link to="/login" className="[&.active]:font-bold text-lg">
+          <Link to="/login" className="hover:underline text-lg">
             Login
           </Link>
           <Button asChild>
-            <Link to="/sign-up" className="text-lg">
+            <Link to="/sign-up" className="hover:underline text-lg">
               Get Started!
             </Link>
           </Button>

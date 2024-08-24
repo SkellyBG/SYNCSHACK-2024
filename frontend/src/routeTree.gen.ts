@@ -14,6 +14,8 @@ import { Route as rootRoute } from "./routes/__root";
 import { Route as SignUpImport } from "./routes/sign-up";
 import { Route as LoginImport } from "./routes/login";
 import { Route as IndexImport } from "./routes/index";
+import { Route as DashboardIndexImport } from "./routes/dashboard/index";
+import { Route as DashboardQuizImport } from "./routes/dashboard/quiz";
 import { Route as CoursesCourseIdImport } from "./routes/courses/$courseId";
 
 // Create/Update Routes
@@ -30,6 +32,16 @@ const LoginRoute = LoginImport.update({
 
 const IndexRoute = IndexImport.update({
   path: "/",
+  getParentRoute: () => rootRoute,
+} as any);
+
+const DashboardIndexRoute = DashboardIndexImport.update({
+  path: "/dashboard/",
+  getParentRoute: () => rootRoute,
+} as any);
+
+const DashboardQuizRoute = DashboardQuizImport.update({
+  path: "/dashboard/quiz",
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -70,6 +82,20 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof CoursesCourseIdImport;
       parentRoute: typeof rootRoute;
     };
+    "/dashboard/quiz": {
+      id: "/dashboard/quiz";
+      path: "/dashboard/quiz";
+      fullPath: "/dashboard/quiz";
+      preLoaderRoute: typeof DashboardQuizImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/dashboard/": {
+      id: "/dashboard/";
+      path: "/dashboard";
+      fullPath: "/dashboard";
+      preLoaderRoute: typeof DashboardIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
@@ -80,6 +106,8 @@ export const routeTree = rootRoute.addChildren({
   LoginRoute,
   SignUpRoute,
   CoursesCourseIdRoute,
+  DashboardQuizRoute,
+  DashboardIndexRoute,
 });
 
 /* prettier-ignore-end */
@@ -93,7 +121,9 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/login",
         "/sign-up",
-        "/courses/$courseId"
+        "/courses/$courseId",
+        "/dashboard/quiz",
+        "/dashboard/"
       ]
     },
     "/": {
@@ -107,6 +137,12 @@ export const routeTree = rootRoute.addChildren({
     },
     "/courses/$courseId": {
       "filePath": "courses/$courseId.tsx"
+    },
+    "/dashboard/quiz": {
+      "filePath": "dashboard/quiz.tsx"
+    },
+    "/dashboard/": {
+      "filePath": "dashboard/index.tsx"
     }
   }
 }
