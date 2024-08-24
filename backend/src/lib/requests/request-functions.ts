@@ -25,7 +25,7 @@ export function createRequest(newRequest: Omit<Request, "requestId">): boolean {
         requestId: `${data.requests.length}`,
         userId: user.userId,
         groupId: requestedGroup.groupId,
-        status: RequestStatus.pending
+        status: RequestStatus.PENDING
     }
 
     data.requests.push(request);
@@ -50,7 +50,7 @@ export function acceptRequest(requestId: string): boolean {
     }
     // else
     let request: Request = requestResult as Request;
-    request.status = RequestStatus.accepted;
+    request.status = RequestStatus.ACCEPTED;
 
     // get group
     let groupResult = getGroup(request.groupId);
@@ -64,7 +64,10 @@ export function acceptRequest(requestId: string): boolean {
     group.members.push(request.userId);
 
     // withdraw all other requests sent by the user
-
+    let pendingUserRequests: Request[] = getRequestsSentByUser(request.userId, RequestStatus.PENDING);
+    pendingUserRequests.forEach( (r) => {
+        r.status = RequestStatus.WITHDRAWN;
+    });
     
     return true;
 }
