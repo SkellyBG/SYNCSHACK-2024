@@ -4,7 +4,9 @@ import {
     Group, 
     Request, 
     Data, 
-    RequestStatus 
+    Token,
+    RequestStatus,
+    getTokenFromTokenId
 } from "../../data/data";
 import { 
     getUser, 
@@ -58,8 +60,14 @@ export function viewRequestsForGroup(groupId: string, requestStatus?: RequestSta
     return getRequestsForGroup(groupId, requestStatus);
 }
 
-export function viewRequestsSentByUser(userId: string, requestStatus?: RequestStatus): Request[] {
-    return getRequestsSentByUser(userId, requestStatus);
+export function viewRequestsSentByUser(tokenString: string, requestStatus?: RequestStatus): Request[] {
+    const tokenResult = getTokenFromTokenId(tokenString);
+    if (typeof(tokenResult) === "string") {
+        return []
+    }
+    const token = tokenResult as Token;
+
+    return getRequestsSentByUser(token.userId, requestStatus);
 }
 
 export function acceptRequest(requestId: string): [boolean, string] {
