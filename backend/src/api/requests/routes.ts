@@ -1,4 +1,6 @@
 import express from "express"
+import { Request } from "@/src/data/data";
+
 import { 
     createRequest, 
     viewRequestsForGroup, 
@@ -12,7 +14,7 @@ const router = express.Router();
 
 // create request
 router.post("/request_group/:groupid", (req, res) => {
-    const payload = req.body;
+    const payload: Omit<Request, "requestId"> = req.body;
     const request = createRequest(payload);
 
     if (typeof(request) === "object") {
@@ -23,7 +25,7 @@ router.post("/request_group/:groupid", (req, res) => {
 });
 
 // view requests for group
-router.post("/view_requests/:groupid", (req, res) => {
+router.get("/view_requests/:groupid", (req, res) => {
     const payload = req.body;
     const groupRequests = viewRequestsForGroup(req.params.groupid, payload.requestStatus);
 
@@ -35,7 +37,7 @@ router.post("/view_requests/:groupid", (req, res) => {
 });
 
 // view requests sent by a user
-router.post("view_requests/", (req, res) => {
+router.get("view_requests/", (req, res) => {
     const payload = req.body;
 
     const tokenString: string | undefined = req.headers.authorization;
@@ -84,3 +86,5 @@ router.post("withdraw_request/:requestid", (req, res) => {
         res.status(400).json({ failedString: withdraw[1] });
     }
 })
+
+export default router;
