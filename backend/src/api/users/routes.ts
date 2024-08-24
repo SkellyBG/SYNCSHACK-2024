@@ -1,14 +1,20 @@
 import express from "express";
 import { NewUser, User, LoginDetails, Token } from "../../data/data";
-import { addUser, completeUser, viewOtherUser, viewCurUser, loginUser } from '../../lib/users/user-functions';
+import {
+  addUser,
+  completeUser,
+  viewOtherUser,
+  viewCurUser,
+  loginUser,
+} from "../../lib/users/user-functions";
 
 const router = express.Router();
 
 // Create a new user
 router.post("/users", (req, res) => {
-  const payload: Omit<NewUser, 'newUserId'> = req.body;
+  const payload: Omit<NewUser, "newUserId"> = req.body;
   const user: NewUser | string = addUser(payload);
-  if (typeof (user) == 'string') {
+  if (typeof user == "string") {
     res.status(400).json({ error: user });
   } else {
     res.status(200).json({ user: user });
@@ -19,7 +25,7 @@ router.post("/users", (req, res) => {
 router.post("/users/login", (req, res) => {
   const payload: LoginDetails = req.body;
   const token: string = loginUser(payload);
-  if (token.includes('Error')) {
+  if (token.includes("Error")) {
     res.status(400).json({ error: token });
   } else {
     res.status(200).json({ token: token });
@@ -29,12 +35,12 @@ router.post("/users/login", (req, res) => {
 // Complete user
 router.post("/users/:token", (req, res) => {
   const token: string | undefined = req.headers.authorization;
-  if (typeof (token) == undefined) {
-    res.status(400).json({ error: 'Not logged in!' });
+  if (typeof token == undefined) {
+    res.status(400).json({ error: "Not logged in!" });
   } else {
     const payload: User = req.body;
     const user: User | string = completeUser(payload, token as string);
-    if (typeof (user) == 'string') {
+    if (typeof user == "string") {
       res.status(400).json({ error: user });
     } else {
       res.status(200).json({ user: user });
@@ -45,11 +51,12 @@ router.post("/users/:token", (req, res) => {
 // View user - current user
 router.get("/users/me", (req, res) => {
   const payload: string | undefined = req.headers.authorization;
-  if (typeof (payload) == undefined) {
-    res.status(400).json({ error: 'Error: Not logged in!' });
+  console.log(payload);
+  if (typeof payload == undefined) {
+    res.status(400).json({ error: "Error: Not logged in!" });
   }
   const user: User | string = viewCurUser(payload as string);
-  if (typeof (user) == 'string') {
+  if (typeof user == "string") {
     res.status(400).json({ error: user });
   } else {
     res.status(200).json({ user: user });
@@ -60,7 +67,7 @@ router.get("/users/me", (req, res) => {
 router.get("/users/:userid", (req, res) => {
   const payload: string = req.params.userid;
   const user: User | string = viewOtherUser(payload);
-  if (typeof (user) == 'string') {
+  if (typeof user == "string") {
     res.status(400).json({ error: user });
   } else {
     res.status(200).json({ user: user });

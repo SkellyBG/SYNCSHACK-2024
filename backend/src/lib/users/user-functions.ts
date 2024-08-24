@@ -43,7 +43,6 @@ export function addUser(newUser: Omit<NewUser, "newUserId">): NewUser | string {
   writeData(data);
 
   console.log("User added successfully!");
-  console.log(newUsers);
   return newUserData;
 }
 
@@ -173,40 +172,14 @@ export function viewOtherUser(targetUserId: string): User | string {
 }
 
 // View cur user
-export function viewCurUser(targetUserId: string): User | string {
-  let data: Data = getData() as Data;
-  let users: User[] = data.users;
-  let newUsers: NewUser[] = data.newUsers;
-  let found = false;
-  // Check users
-  let matchingUsers: User[] = users.filter(
-    (user) => user.userId === targetUserId
-  );
-
-  // Check newUsers
-  let matchingNewUsers: NewUser[] = newUsers.filter(
-    (user) => user.newUserId === targetUserId
-  );
-
-  if (matchingUsers.length == 0 && matchingNewUsers.length == 0) {
-    return "Error: target user id not found";
-  } else if (matchingNewUsers.length != 0) {
-    let user: User = {
-      userId: matchingNewUsers[0].newUserId,
-      name: matchingNewUsers[0].name,
-      email: matchingNewUsers[0].email,
-      password: matchingNewUsers[0].password,
-      role: null,
-      targetGrade: null,
-      bio: null,
-      uni: null,
-      degree: null,
-      courses: null,
-    };
-    return user;
-  } else {
-    return matchingUsers[0];
+export function viewCurUser(tokenId: string): User | string {
+  let token: Token | string = getTokenFromTokenId(tokenId);
+  if (typeof token == "string") {
+    return "Error: Invalid token!";
   }
+  console.log("viewing myself with userId:");
+  console.log(token.userId);
+  return viewOtherUser(token.userId);
 }
 
 // Delete user

@@ -14,7 +14,7 @@ export const Route = createFileRoute("/sign-up")({
 
 function SignUp() {
   const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate({from: '/sign-up'});
+  const navigate = useNavigate({ from: "/sign-up" });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,8 +30,8 @@ function SignUp() {
       try {
         await trigger({ name, email, password });
         enqueueSnackbar("Account created successfully", { variant: "success" });
-        navigate({to: '/login'});
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        navigate({ to: "/login" });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (e: any) {
         enqueueSnackbar(e.message, { variant: "error" });
       }
