@@ -24,7 +24,7 @@ router.post("/users/:userid", (req, res) => {
 
 // View user
 router.get("/users/:userid", (req, res) => {
-  const payload: string = req.body;
+  const payload: string = req.params.userid;
   const user: User | string = viewUser(payload);
   if (typeof (user) == 'string') {
     res.status(400).json({ error: user });
