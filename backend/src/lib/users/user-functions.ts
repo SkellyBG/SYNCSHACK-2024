@@ -2,9 +2,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { getData, NewUser, User, Data } from '../../data/data';
 
 // Create user
-export function addUser(newUser: Omit<NewUser, 'newUserId'>): NewUser {
+export function addUser(newUser: Omit<NewUser, 'newUserId'>): NewUser | String {
   let data: Data = getData() as Data;
   let newUsers: NewUser[] = data.newUsers;
+
+  // Error check if email already exists
+  let matchingUsers: NewUser[] = newUsers.filter(user => user.email === newUser.email);
+  if (matchingUsers.length != 0) {
+    return "Error: email already exists!";
+  }
+
   const newUserId: string = uuidv4();  // Generate a new UUID
   let newUserData: NewUser = {
     newUserId: newUserId,

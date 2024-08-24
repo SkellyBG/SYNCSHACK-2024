@@ -7,8 +7,12 @@ const router = express.Router();
 // Create a new user
 router.post("/users", (req, res) => {
   const payload: Omit<NewUser, 'newUserId'> = req.body;
-  const user: NewUser = addUser(payload);
-  res.status(200).json({ user: user });
+  const user: NewUser | string = addUser(payload);
+  if (typeof (user) == 'string') {
+    res.status(400).json({ error: user });
+  } else {
+    res.status(200).json({ user: user });
+  }
 });
 
 // Complete user
