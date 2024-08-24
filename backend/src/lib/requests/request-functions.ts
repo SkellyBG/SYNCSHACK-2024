@@ -1,6 +1,21 @@
-import { getData, User, Group, Request, Data, RequestStatus } from "../../data/data";
-import { getUser, getGroup, getRequestsForGroup, 
-    getRequestsSentByUser, getRequest, checkIfRequestExists } from "../helpers/helpers";
+import { 
+    getData, 
+    User, 
+    Group, 
+    Request, 
+    Data, 
+    Token,
+    RequestStatus,
+    getTokenFromTokenId
+} from "../../data/data";
+import { 
+    getUser, 
+    getGroup, 
+    getRequestsForGroup, 
+    getRequestsSentByUser, 
+    getRequest, 
+    checkIfRequestExists 
+} from "../helpers/helpers";
 
 export function createRequest(newRequest: Omit<Request, "requestId">): Request | string {
     let data: Data = getData() as Data;
@@ -45,8 +60,14 @@ export function viewRequestsForGroup(groupId: string, requestStatus?: RequestSta
     return getRequestsForGroup(groupId, requestStatus);
 }
 
-export function viewRequestsSentByUser(userId: string, requestStatus?: RequestStatus): Request[] {
-    return getRequestsSentByUser(userId, requestStatus);
+export function viewRequestsSentByUser(tokenString: string, requestStatus?: RequestStatus): Request[] {
+    const tokenResult = getTokenFromTokenId(tokenString);
+    if (typeof(tokenResult) === "string") {
+        return []
+    }
+    const token = tokenResult as Token;
+
+    return getRequestsSentByUser(token.userId, requestStatus);
 }
 
 export function acceptRequest(requestId: string): [boolean, string] {
@@ -76,7 +97,12 @@ export function acceptRequest(requestId: string): [boolean, string] {
     let group: Group = groupResult as Group;
 
     // add user into the group
-    group.members.push(request.userId);
+    let userResult: User | null = getUser(request.userId);
+    if (!userResult) {
+        return [false, "User cannot be found"];
+    }
+    let user: User = userResult as User;
+    group.members.push(user);
 
     // withdraw all other requests sent by the user
     let pendingUserRequests: Request[] = getRequestsSentByUser(request.userId, RequestStatus.PENDING);
