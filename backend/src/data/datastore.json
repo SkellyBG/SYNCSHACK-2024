@@ -38,8 +38,6 @@
       "role": "leader",
       "targetGrade": "HD",
       "bio": "i am cool",
-      "uni": "unsw",
-      "degree": "computer-science",
       "courses": null
     }
   ],
@@ -175,6 +173,10 @@
     {
       "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
       "tokenId": "5b7cc8d7-8c76-40a6-b2a7-b94243cf2eab"
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "tokenId": "1367e89f-7e28-4d5b-9a19-1a6fab2ccb88"
     }
   ]
 }

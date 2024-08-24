@@ -63,6 +63,12 @@ function Root() {
                     Dashboard
                   </Link>
                 </Button>
+
+                <Button asChild>
+                  <Link to="/" className="hover:underline text-lg">
+                    Sign Out
+                  </Link>
+                </Button>
               </>
             )}
             {!me && (
