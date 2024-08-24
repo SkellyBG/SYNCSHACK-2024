@@ -39,74 +39,78 @@ function SignUp() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center bg-gray-100">
-      <div className="text-center mb-6">
-        <h2 className="text-3xl font-bold text-center">
-          Sign up for a new account
-        </h2>
-      </div>
-
-      <Card className="w-full max-w-md">
-        <CardContent className="pt-5">
-          <form>
-            <div className="mb-6">
-              <Label htmlFor="name">Name</Label>
-              <Input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your name"
-                className="w-full px-4 py-2 border rounded-md"
-              />
-            </div>
-            <div className="mb-4">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 border rounded-md"
-              />
-            </div>
-            <div className="mb-4">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                id="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border rounded-md"
-              />
-            </div>
-            <div className="mb-6">
-              <Label id="confirmPassword">Confirm Password</Label>
-              <Input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm your password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-2 border rounded-md"
-              />
-            </div>
-            <Button type="submit" className="w-full" onClick={handleSubmit}>
+    <>
+      <div className="bg-[url('../../Landing_Page_BG.png')] bg-cover bg-no-repeat min-h-[calc(100vh-117px)] font-inter">
+        <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center">
+          <div className="text-center mb-6">
+            <h1 className="text-3xl font-bold text-center">
               Sign Up
-            </Button>
-          </form>
-          <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{" "}
-              <Link to="/login" className="text-blue-500 hover:underline">
-                Log in
-              </Link>
-            </p>
+            </h1>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+
+          <Card className="w-full max-w-md">
+            <CardContent className="pt-5">
+              <form>
+                <div className="mb-6">
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your name"
+                    className="w-full px-4 py-2 border rounded-md"
+                  />
+                </div>
+                <div className="mb-4">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full px-4 py-2 border rounded-md"
+                  />
+                </div>
+                <div className="mb-4">
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-4 py-2 border rounded-md"
+                  />
+                </div>
+                <div className="mb-6">
+                  <Label id="confirmPassword">Confirm Password</Label>
+                  <Input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full px-4 py-2 border rounded-md"
+                  />
+                </div>
+                <Button type="submit" className="w-full" onClick={handleSubmit}>
+                  Sign Up
+                </Button>
+              </form>
+              <div className="mt-4 text-center">
+                <p className="text-sm text-gray-600">
+                  Already have an account?{" "}
+                  <Link to="/login" className="text-blue-500 hover:underline">
+                    Log in
+                  </Link>
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </>
   );
 }
