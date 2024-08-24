@@ -1,5 +1,5 @@
 export interface User {
-  userId: number;
+  userId: string;
   name: string;
   email: string;
   password: string;
@@ -10,7 +10,7 @@ export interface User {
 }
 
 export interface NewUser {
-  newUserId: number;
+  newUserId: string;
   name: string;
   email: string;
   password: string;
@@ -38,18 +38,25 @@ export interface Course {
 }
 
 export interface Group {
-  groupId: number;
+  groupId: string;
   name: string;
-  members: Array<number>; // Array of user IDs
-  leader: number; // user ID of the user who is the creator of the group
+  members: Array<string>; // Array of user IDs
+  leader: string; // user ID of the user who is the creator of the group
   courseId: number;
 }
 
 export interface Request {
   requestId: number;
-  userId: number;
-  groupId: number;
+  userId: string;
+  groupId: string;
   status: string;
+}
+
+export enum RequestStatus {
+  pending = "Pending",
+  accepted = "Accepted",
+  rejected = "Rejected",
+  withdrawn = "Withdrawn"
 }
 
 export interface Data {
