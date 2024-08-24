@@ -71,3 +71,16 @@ export function acceptRequest(requestId: string): boolean {
     
     return true;
 }
+
+export function rejectRequest(requestId: string): boolean {
+    // get request
+    let requestResult = getRequest(requestId);
+    if (!requestResult) {
+        return false;
+    }
+    // else
+    let request: Request = requestResult as Request;
+    request.status = RequestStatus.REJECTED;
+
+    return true;
+}
