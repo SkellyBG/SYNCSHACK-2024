@@ -2,10 +2,17 @@ import { v4 as uuidv4 } from "uuid";
 import { getData, NewUser, User, Data } from "@/src/data/data";
 
 // Create user
-export function addUser(newUser: Omit<NewUser, "newUserId">): NewUser {
+export function addUser(newUser: Omit<NewUser, 'newUserId'>): NewUser | String {
   let data: Data = getData() as Data;
   let newUsers: NewUser[] = data.newUsers;
-  const newUserId: string = uuidv4(); // Generate a new UUID
+
+  // Error check if email already exists
+  let matchingUsers: NewUser[] = newUsers.filter(user => user.email === newUser.email);
+  if (matchingUsers.length != 0) {
+    return "Error: email already exists!";
+  }
+  
+  const newUserId: string = uuidv4();  // Generate a new UUID
   let newUserData: NewUser = {
     newUserId: newUserId,
     name: newUser.name,
@@ -35,5 +42,15 @@ export function completeUser(user: User): User {
 // Edit user
 
 // View user
+export function viewUser(targetUserId: string): User | string {
+  let data: Data = getData() as Data;
+  let users: User[] = data.users;
+  let matchingUsers: User[] = users.filter(user => user.userId === targetUserId);
+  if (matchingUsers.length == 0) {
+    return "Error: target user id not found";
+  } else {
+    return matchingUsers[0];
+  }
+}
 
 // Delete user
