@@ -1,4 +1,5 @@
 import { useMe } from "@/api/hooks";
+import { removeToken } from "@/api/token";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,7 +15,12 @@ export const Route = createRootRoute({
 });
 
 function Root() {
-  const { me } = useMe();
+  const { me, isError, mutate } = useMe();
+
+  const handleSignout = () => {
+    removeToken();
+    mutate();
+  };
 
   return (
     <>
@@ -26,7 +32,7 @@ function Root() {
             <div className="p-3 text-[#FB6209] text-3xl">Project Pals</div>
           </Link>{" "}
           <div className="flex ml-auto items-center flex gap-6">
-            {me && (
+            {me && !isError && (
               <>
                 <DropdownMenu>
                   <DropdownMenuTrigger className="hover:underline text-lg  font-bold">
@@ -46,8 +52,11 @@ function Root() {
                 </DropdownMenu>
 
                 <div className="relative flex items-center">
-                  <Button asChild variant='outline'>
-                    <Link to="/requests" className="relative text-lg border-2 border-blue-500 text-blue-500 hover:border-blue-600 hover:text-blue-600">
+                  <Button asChild variant="outline">
+                    <Link
+                      to="/requests"
+                      className="relative text-lg border-2 border-blue-500 text-blue-500 hover:border-blue-600 hover:text-blue-600"
+                    >
                       Requests
                     </Link>
                   </Button>
@@ -64,14 +73,12 @@ function Root() {
                   </Link>
                 </Button>
 
-                <Button asChild>
-                  <Link to="/" className="hover:underline text-lg">
-                    Sign Out
-                  </Link>
+                <Button onClick={handleSignout}>
+                  <Link to="/">Sign Out</Link>
                 </Button>
               </>
             )}
-            {!me && (
+            {(!me || isError) && (
               <>
                 <Link to="/login" className="hover:underline text-lg font-bold">
                   Login

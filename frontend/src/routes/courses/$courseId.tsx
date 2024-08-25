@@ -1,4 +1,5 @@
 import { fetcherWithAuth, postWithAuth } from "@/api/fetcher";
+import { useMe } from "@/api/hooks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,6 +34,8 @@ function Course() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [createGroupOpen, setCreateGroupOpen] = useState(false);
+  const [requestOpen, setRequestOpen] = useState(false);
+  const [groupId, setGroupId] = useState("");
 
   const { courseId } = Route.useParams();
   const { data, isLoading } = useSWR(
@@ -45,6 +48,13 @@ function Course() {
     postWithAuth
   );
 
+  const { trigger: triggerRequest } = useSWRMutation(
+    [`/api/request_group/`, groupId],
+    postWithAuth
+  );
+
+  const { me } = useMe();
+
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
       await trigger({ name, description });
@@ -52,6 +62,18 @@ function Course() {
       setDescription("");
       setName("");
       setCreateGroupOpen(!createGroupOpen);
+    } catch (e) {
+      enqueueSnackbar(e.message, { variant: "error" });
+    }
+  };
+
+  const handleSendRequest = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    try {
+      await triggerRequest({ userId: me?.userId, courseId });
+      enqueueSnackbar("Successfully sent a request to join!", {
+        variant: "success",
+      });
+      setRequestOpen(!requestOpen);
     } catch (e) {
       enqueueSnackbar(e.message, { variant: "error" });
     }
@@ -99,7 +121,11 @@ function Course() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" onClick={handleSubmit}>
+                <Button
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={!(name && description)}
+                >
                   Create group
                 </Button>
               </DialogFooter>
@@ -111,6 +137,7 @@ function Course() {
           {isLoading && <></>}
           {data && data.groups.length === 0 && <>No groups found yet :c</>}
           {data &&
+            me &&
             data.groups.length > 0 &&
             data.groups.map((group) => (
               <Card className="w-full">
@@ -138,7 +165,34 @@ function Course() {
                       ))}
                     </div>
 
-                    <Button>View Group</Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button onClick={() => setGroupId(group.groupId)}>
+                          View group
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>Group {group.name}</DialogTitle>
+                        </DialogHeader>
+                        <div>
+                          Current number of members: {group.members.length}
+                        </div>
+
+                        <div>{group.description}</div>
+                        <DialogFooter>
+                          <Button
+                            type="submit"
+                            onClick={handleSendRequest}
+                            disabled={group.members.some(
+                              (member) => member.userId === me.userId
+                            )}
+                          >
+                            Request to join
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </CardContent>
               </Card>
