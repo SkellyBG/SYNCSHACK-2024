@@ -40,18 +40,18 @@ function SignUp() {
 
   return (
     <>
-      <div className="bg-[url('../../Landing_Page_BG.png')] bg-cover bg-no-repeat min-h-[calc(100vh-117px)] font-inter">
-        <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center">
+        <div className="min-h-[calc(100vh-116px)] flex flex-col items-center justify-center">
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold text-center">
               Sign Up
             </h1>
+            <div className="mt-4 font-bold opacity-75">Find the perfect project pals for you today!</div>
           </div>
 
           <Card className="w-full max-w-md">
             <CardContent className="pt-5">
               <form>
-                <div className="mb-6">
+                <div className="mb-4">
                   <Label htmlFor="name">Name</Label>
                   <Input
                     type="text"
@@ -95,22 +95,21 @@ function SignUp() {
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
-                <Button type="submit" className="w-full" onClick={handleSubmit}>
+                <Button type="submit" className="w-full hover:bg-blue-600" onClick={handleSubmit}>
                   Sign Up
                 </Button>
               </form>
               <div className="mt-4 text-center">
                 <p className="text-sm text-gray-600">
                   Already have an account?{" "}
-                  <Link to="/login" className="text-blue-500 hover:underline">
-                    Log in
+                  <Link to="/login" className="text-blue-500 hover:underline hover:text-blue-600">
+                    Log in!
                   </Link>
                 </p>
               </div>
             </CardContent>
           </Card>
         </div>
-      </div>
     </>
   );
 }

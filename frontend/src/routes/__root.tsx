@@ -1,4 +1,6 @@
+import { fetcherWithAuth } from "@/api/fetcher";
 import { useMe } from "@/api/hooks";
+import { removeToken } from "@/api/token";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -6,15 +8,29 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import RequestNotif from "@/components/ui/lib/request";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import useSWR from "swr";
 
 export const Route = createRootRoute({
   component: Root,
 });
 
 function Root() {
-  const { me } = useMe();
+  const { me, isError, mutate } = useMe();
+
+  const { data, error } = useSWR("/api/view_requests/me", fetcherWithAuth);
+
+  const handleSignout = () => {
+    removeToken();
+    mutate();
+  };
 
   const userCourses = me?.courses || [];
 
@@ -28,7 +44,7 @@ function Root() {
             <div className="p-3 text-[#FB6209] text-3xl">Project Pals</div>
           </Link>{" "}
           <div className="flex ml-auto items-center flex gap-6">
-            {me && (
+            {me && !isError && (
               <>
                 <DropdownMenu>
                   <DropdownMenuTrigger className="hover:underline text-lg font-bold">
@@ -51,18 +67,36 @@ function Root() {
                   </DropdownMenuContent>
                 </DropdownMenu>
 
-                <div className="relative flex items-center">
-                  <Button asChild variant='outline'>
-                    <Link to="/requests" className="relative text-lg border-2 border-blue-500 text-blue-500 hover:border-blue-600 hover:text-blue-600">
-                      Requests
-                    </Link>
-                  </Button>
-                  {/* Ping Effect */}
-                  <span className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3">
-                    <span className="animate-ping absolute inline-flex h-4 w-4 rounded-full bg-red-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
-                  </span>
-                </div>
+                {data && (
+                  <div className="relative flex items-center">
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button variant="outline">Requests</Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-80 flex flex-col item-centers gap-4">
+                        {data.userRequests.filter(
+                          (request) => request.status === "Pending"
+                        ).length === 0 && <>No requests found!</>}
+                        {data.userRequests
+                          .filter((request) => request.status === "Pending")
+                          .map((request) => (
+                            <RequestNotif
+                              request={request}
+                              key={request.requestId}
+                            ></RequestNotif>
+                          ))}
+                      </PopoverContent>
+                    </Popover>
+                    {data.userRequests.filter(
+                      (request) => request.status === "Pending"
+                    ).length !== 0 && (
+                      <span className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3">
+                        <span className="animate-ping absolute inline-flex h-4 w-4 rounded-full bg-red-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
+                      </span>
+                    )}
+                  </div>
+                )}
 
                 <Button asChild>
                   <Link to="/dashboard" className="hover:underline text-lg">
@@ -70,19 +104,19 @@ function Root() {
                   </Link>
                 </Button>
 
-                <Button asChild>
-                  <Link to="/" className="hover:underline text-lg">
+                <Button asChild className="bg-orange-400 hover:bg-orange-300">
+                  <Link to="/" onClick={handleSignout}>
                     Sign Out
                   </Link>
                 </Button>
               </>
             )}
-            {!me && (
+            {(!me || isError) && (
               <>
-                <Link to="/login" className="hover:underline text-lg">
+                <Link to="/login" className="hover:underline text-lg font-bold">
                   Login
                 </Link>
-                <Button asChild>
+                <Button asChild className = "hover:bg-blue-600">
                   <Link to="/sign-up" className="hover:underline text-lg">
                     Sign Up
                   </Link>
@@ -92,7 +126,6 @@ function Root() {
           </div>
         </div>
         <Outlet />
-        <TanStackRouterDevtools />
       </div>
     </>
   );

@@ -1,4 +1,6 @@
 import { fetcherWithAuth, postWithAuth } from "@/api/fetcher";
+import { useMe } from "@/api/hooks";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,6 +33,9 @@ export const Route = createFileRoute("/courses/$courseId")({
 function Course() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [createGroupOpen, setCreateGroupOpen] = useState(false);
+  const [requestOpen, setRequestOpen] = useState(false);
+  const [groupId, setGroupId] = useState("");
 
   const { courseId } = Route.useParams();
   const { data, isLoading } = useSWR(
@@ -43,10 +48,32 @@ function Course() {
     postWithAuth
   );
 
+  const { trigger: triggerRequest } = useSWRMutation(
+    [`/api/request_group/`, groupId],
+    postWithAuth
+  );
+
+  const { me } = useMe();
+
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
       await trigger({ name, description });
       enqueueSnackbar("Group successfully created!", { variant: "success" });
+      setDescription("");
+      setName("");
+      setCreateGroupOpen(!createGroupOpen);
+    } catch (e) {
+      enqueueSnackbar(e.message, { variant: "error" });
+    }
+  };
+
+  const handleSendRequest = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    try {
+      await triggerRequest({ userId: me?.userId, courseId });
+      enqueueSnackbar("Successfully sent a request to join!", {
+        variant: "success",
+      });
+      setRequestOpen(!requestOpen);
     } catch (e) {
       enqueueSnackbar(e.message, { variant: "error" });
     }
@@ -57,7 +84,7 @@ function Course() {
       <div className="min-h-screen p-8 bg-gray-100">
         <div className="flex justify-between mb-6">
           <h2 className="text-3xl font-bold text-left">Course: {courseId}</h2>
-          <Dialog>
+          <Dialog open={createGroupOpen} onOpenChange={setCreateGroupOpen}>
             <DialogTrigger asChild>
               <Button>Create new group</Button>
             </DialogTrigger>
@@ -94,7 +121,11 @@ function Course() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" onClick={handleSubmit}>
+                <Button
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={!(name && description)}
+                >
                   Create group
                 </Button>
               </DialogFooter>
@@ -106,6 +137,7 @@ function Course() {
           {isLoading && <></>}
           {data && data.groups.length === 0 && <>No groups found yet :c</>}
           {data &&
+            me &&
             data.groups.length > 0 &&
             data.groups.map((group) => (
               <Card className="w-full">
@@ -113,16 +145,55 @@ function Course() {
                   <CardTitle>{group.name}</CardTitle>
                   <CardDescription>
                     Group creator:{" "}
-                    {
-                      group.members.filter(
-                        (member) => member.userId === group.leader
-                      )[0].name
-                    }
+                    {group.members.filter(
+                      (member) => member.userId === group.leader
+                    )[0]?.name ?? group.members[0].name}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <h1>{group.members.length} members</h1>
-                  <p>{group.description}</p>
+                  <div className="flex justify-between">
+                    <div className="flex gap-4 items-center">
+                      Members:{" "}
+                      {group.members.map((member) => (
+                        <Avatar className="w-8 h-8">
+                          <AvatarImage
+                            src="https://github.com/shadcn.png"
+                            alt="@shadcn"
+                          />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                      ))}
+                    </div>
+
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button onClick={() => setGroupId(group.groupId)}>
+                          View group
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>Group {group.name}</DialogTitle>
+                        </DialogHeader>
+                        <div>
+                          Current number of members: {group.members.length}
+                        </div>
+
+                        <div>{group.description}</div>
+                        <DialogFooter>
+                          <Button
+                            type="submit"
+                            onClick={handleSendRequest}
+                            disabled={group.members.some(
+                              (member) => member.userId === me.userId
+                            )}
+                          >
+                            Request to join
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                 </CardContent>
               </Card>
             ))}

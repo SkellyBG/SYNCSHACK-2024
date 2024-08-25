@@ -30,11 +30,15 @@ export enum Grade {
 }
 
 export function useMe() {
-  const { data, error, isLoading } = useSWR(`/api/users/me`, fetcherWithAuth);
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/users/me`,
+    fetcherWithAuth
+  );
 
   return {
     me: data?.user as User | null,
     isLoading,
     isError: error,
+    mutate,
   };
 }

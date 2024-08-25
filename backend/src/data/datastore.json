@@ -31,6 +31,18 @@
       "courses": null
     },
     {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "name": "a",
+      "email": "feelin.cute@unsw.edu.au",
+      "password": "a",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "aa",
+      "uni": "uts",
+      "degree": "computer-science",
+      "courses": null
+    },
+    {
       "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
       "name": "oklol",
       "email": "ok.lol@gmail.com",
@@ -170,6 +182,16 @@
           "uni": "unsw",
           "degree": "computer-science",
           "courses": null
+        },
+        {
+          "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+          "name": "a",
+          "email": "feelin.cute@unsw.edu.au",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aa",
+          "courses": null
         }
       ],
       "courseId": "COMP1511"
@@ -211,9 +233,176 @@
         }
       ],
       "courseId": "COMP1511"
+    },
+    {
+      "groupId": "aa52cbaa-dbc3-44d7-a685-b649774faaf1",
+      "name": "",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
+    },
+    {
+      "groupId": "cc06dc02-9c79-4972-a373-84f5329a9cdd",
+      "name": "a",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
+    },
+    {
+      "groupId": "be6376ad-58f8-45c0-b0fb-9cc275a95001",
+      "name": "a",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        },
+        {
+          "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+          "name": "a",
+          "email": "feelin.cute@unsw.edu.au",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
+    },
+    {
+      "groupId": "4c1a517f-d092-42da-a5e3-19ae7b99a495",
+      "name": "a",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
+    },
+    {
+      "groupId": "3a38a563-eb08-457a-893f-f11b5d47bf6d",
+      "name": "a",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
+    },
+    {
+      "groupId": "248dc3b4-589e-4b8e-b907-cb843e30f080",
+      "name": "a",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
+    },
+    {
+      "groupId": "36597296-e5a4-41e3-95e2-824e7de1cb29",
+      "name": "a",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
+    },
+    {
+      "groupId": "759e18b1-594a-4104-8927-28e4a8f97e58",
+      "name": "a",
+      "members": [
+        {
+          "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+          "name": "Tuan Hung Pham",
+          "email": "thungpham.1811@gmail.com",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aaa",
+          "courses": null
+        }
+      ],
+      "courseId": "COMP1511"
     }
   ],
-  "requests": [],
+  "requests": [
+    {
+      "requestId": "0",
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "groupId": "a8d24eae-efe5-4692-a99e-28d7cd234f5a",
+      "status": "Withdrawn"
+    },
+    {
+      "requestId": "1",
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "groupId": "e287e350-640d-48a3-acb4-8354ddc4a1d0",
+      "courseId": "COMP1511",
+      "status": "Rejected"
+    },
+    {
+      "requestId": "2",
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "groupId": "be6376ad-58f8-45c0-b0fb-9cc275a95001",
+      "courseId": "COMP1511",
+      "status": "Withdrawn"
+    }
+  ],
   "tokens": [
     {
       "userId": "f67c839a-8d52-4f34-ad5b-15c34dbf17ce",
@@ -259,16 +448,76 @@
       "tokenId": "920d465f-c0bb-47c1-aa65-4ddc738f3eef"
     },
     {
-      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "tokenId": "4abd791b-c169-4e6d-be46-0a6d86c2defe"
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "a42d454e-b8a7-49cc-b9e0-d53f369257c7"
     },
     {
-      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "tokenId": "5b7cc8d7-8c76-40a6-b2a7-b94243cf2eab"
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "4ceac074-d67c-4e82-94ab-8bd38e52b330"
     },
     {
-      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "tokenId": "1367e89f-7e28-4d5b-9a19-1a6fab2ccb88"
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "956e2e21-7fa1-4a25-a251-ed5d811f06e2"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "6856cea4-783d-4d6b-bea9-35b1a828f91f"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "dcba83f6-b641-47ee-bdd6-b845397c8768"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "15b91a8b-86d3-4c82-8c0e-6dfdb3cc75d5"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "d3947513-0a20-40ac-886b-b24946885d1e"
+    },
+    {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "tokenId": "35e9ed4e-ffb2-4528-8f8c-7bf0de5402d1"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "03c3aa16-571f-4d90-a326-cc8594b89193"
+    },
+    {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "tokenId": "a8dc131c-8f94-4861-ab83-3f465c9f1fde"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "ea4d0c9b-110d-4df0-bbee-2f8421d401a4"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "d08bcac6-dfad-4e15-a3ae-f2d4703ab1b3"
+    },
+    {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "tokenId": "5bf8d3c0-2397-4a50-aac9-03c2c874a018"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "46e1571d-8304-4675-8c6d-7a5bb7fdbb26"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "dcba83f6-b641-47ee-bdd6-b845397c8768"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "15b91a8b-86d3-4c82-8c0e-6dfdb3cc75d5"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "d3947513-0a20-40ac-886b-b24946885d1e"
+    },
+    {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "tokenId": "35e9ed4e-ffb2-4528-8f8c-7bf0de5402d1"
     }
   ]
 }
