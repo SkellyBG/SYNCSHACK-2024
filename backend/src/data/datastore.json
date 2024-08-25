@@ -403,6 +403,15 @@
       "status": "Withdrawn"
     }
   ],
+  "requests": [
+    {
+      "requestId": "0",
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "groupId": "a8d24eae-efe5-4692-a99e-28d7cd234f5a",
+      "courseId": "COMP1511",
+      "status": "Pending"
+    }
+  ],
   "tokens": [
     {
       "userId": "f67c839a-8d52-4f34-ad5b-15c34dbf17ce",
@@ -446,6 +455,10 @@
     {
       "userId": "a0586183-b39f-4364-b6a6-62956996a102",
       "tokenId": "920d465f-c0bb-47c1-aa65-4ddc738f3eef"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "3878127a-c009-4d9e-8637-2bacd1b550e9"
     },
     {
       "userId": "a0586183-b39f-4364-b6a6-62956996a102",

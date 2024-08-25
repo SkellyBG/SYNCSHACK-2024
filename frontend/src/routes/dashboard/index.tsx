@@ -95,6 +95,59 @@ function Dashboard() {
                 </CardContent>
               </Card>
 
+              <Card className="p-10 bg-white bg-opacity-70 shadow-md">
+                <CardContent className="flex flex-col items-center justify-center">
+                  <div className="w-full flex justify-between items-center">
+                    <h1 className="font-semibold text-2xl">Your current course(s)</h1>
+                    <Button onClick={() => setOpen(true)}>Add new courses</Button>
+                  </div>
+
+                  <h1 className="mt-2">{me.name}</h1>
+                  <Separator className="mb-5 mt-5" />
+
+                  {/* Show this section only if the profile is incomplete */}
+                  {isProfileIncomplete() && (
+                    <>
+                      <h1 className="font-semibold text-lg">Complete your profile</h1>
+                      <Link to="/dashboard/quiz">
+                        <FaArrowRightLong size={30} />
+                      </Link>
+                    </>
+                  )}
+
+                  <h1 className="font-semibold text-xl mb-5">About Me</h1>
+                  <div className="flex">
+
+                    <div className="flex-1 pr-4 grid grid-cols-2 gap-4">
+                      {[
+                        { label: me.uni?.toUpperCase(), key: 'uni' },
+                        { label: me.degree?.toUpperCase().replace("-", ' '), key: 'degree' },
+                        { label: me.role?.toUpperCase(), key: 'role' },
+                        { label: me.targetGrade?.toUpperCase(), key: 'targetGrade' }
+                      ].map(({ label, key }) => (
+                        <div key={key} className="relative flex justify-center items-center text-center bg-gray-100 p-4 rounded-lg shadow-sm group">
+                          <div>{label}</div>
+                          <div className="absolute p-2 bg-gray-800 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                            <FaPen size={16} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex-1 pl-4">
+                      <div className="relative bg-gray-100 p-4 rounded-lg shadow-sm h-full group">
+                        <h2 className="font-semibold text-md mb-2">My description</h2>
+                        <p>{me.bio}</p>
+                        <div className="absolute top-2 right-2 p-2 bg-gray-800 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                          <FaPen size={16} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </CardContent>
+              </Card>
+
               <CourseComponents me={me} token={getToken()} />
 
               <Card className="p-5 bg-white bg-opacity-70 shadow-md">
