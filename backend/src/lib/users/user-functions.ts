@@ -134,6 +134,37 @@ export function completeUser(user: User, tokenId: string): User | string {
 }
 
 // Edit user
+export function editUser(user: User, tokenId: string): User | string {
+  let data: Data = getData() as Data;
+  let users: User[] = data.users;
+
+  // Match tokenId to token
+  let token: Token | string = getTokenFromTokenId(tokenId);
+  if (typeof token == "string") {
+    return token;
+  }
+
+  // Check that token userId matches userId of completing user
+  if (token.userId != user.userId || token.userId == undefined) {
+    return "Error: Login doesn't match current user!";
+  }
+
+  // Find the user to update
+  let userIndex: number = users.findIndex((u) => u.userId === user.userId);
+  if (userIndex === -1) {
+    return "Error: User not found!";
+  }
+
+  // Update user details
+  users[userIndex] = { ...users[userIndex], ...user };
+
+  // Write the updated data
+  data.users = users;
+  writeData(data);
+
+  console.log("User details updated successfully!");
+  return users[userIndex];
+}
 
 // View other user
 export function viewOtherUser(targetUserId: string): User | string {

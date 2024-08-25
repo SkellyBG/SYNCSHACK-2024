@@ -50,3 +50,23 @@ export async function postWithAuth(
   }
   return data;
 }
+
+export async function putWithAuth(
+  url: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  { arg }: { arg: any }
+) {
+  const response = await fetch("http://localhost:3000" + url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `${getToken()}`,
+    },
+    body: JSON.stringify(arg),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error);
+  }
+  return data;
+}
