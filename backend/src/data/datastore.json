@@ -29,16 +29,6 @@
       "targetGrade": "HD",
       "bio": "aaa",
       "courses": null
-    },
-    {
-      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "name": "oklol",
-      "email": "ok.lol@gmail.com",
-      "password": "oklol",
-      "role": "leader",
-      "targetGrade": "HD",
-      "bio": "i am cool",
-      "courses": null
     }
   ],
   "newUsers": [
@@ -333,16 +323,26 @@
     {
       "userId": "a0586183-b39f-4364-b6a6-62956996a102",
       "tokenId": "a42d454e-b8a7-49cc-b9e0-d53f369257c7"
-      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "tokenId": "4abd791b-c169-4e6d-be46-0a6d86c2defe"
     },
     {
-      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "tokenId": "5b7cc8d7-8c76-40a6-b2a7-b94243cf2eab"
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "4ceac074-d67c-4e82-94ab-8bd38e52b330"
     },
     {
-      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
-      "tokenId": "1367e89f-7e28-4d5b-9a19-1a6fab2ccb88"
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "956e2e21-7fa1-4a25-a251-ed5d811f06e2"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "6856cea4-783d-4d6b-bea9-35b1a828f91f"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "dcba83f6-b641-47ee-bdd6-b845397c8768"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "15b91a8b-86d3-4c82-8c0e-6dfdb3cc75d5"
     }
   ]
 }

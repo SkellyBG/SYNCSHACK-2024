@@ -99,7 +99,11 @@ function Course() {
                 </div>
               </div>
               <DialogFooter>
-                <Button type="submit" onClick={handleSubmit}>
+                <Button
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={!(name && description)}
+                >
                   Create group
                 </Button>
               </DialogFooter>
