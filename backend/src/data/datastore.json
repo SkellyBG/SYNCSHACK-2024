@@ -80,6 +80,16 @@
           "uni": "unsw",
           "degree": "computer-science",
           "courses": null
+        },
+        {
+          "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+          "name": "a",
+          "email": "feelin.cute@unsw.edu.au",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aa",
+          "courses": null
         }
       ],
       "courseId": "COMP1511"
@@ -137,10 +147,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "",
-      "createdAt": "2024-08-24T23:30:32.548Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "cc06dc02-9c79-4972-a373-84f5329a9cdd",
@@ -157,10 +164,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "a",
-      "createdAt": "2024-08-24T23:33:26.605Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "be6376ad-58f8-45c0-b0fb-9cc275a95001",
@@ -175,12 +179,19 @@
           "targetGrade": "HD",
           "bio": "aaa",
           "courses": null
+        },
+        {
+          "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+          "name": "a",
+          "email": "feelin.cute@unsw.edu.au",
+          "password": "a",
+          "role": "leader",
+          "targetGrade": "HD",
+          "bio": "aa",
+          "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "a",
-      "createdAt": "2024-08-24T23:33:50.789Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "4c1a517f-d092-42da-a5e3-19ae7b99a495",
@@ -197,10 +208,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "abb",
-      "createdAt": "2024-08-24T23:34:01.899Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "3a38a563-eb08-457a-893f-f11b5d47bf6d",
@@ -217,10 +225,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "abb",
-      "createdAt": "2024-08-24T23:34:59.595Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "248dc3b4-589e-4b8e-b907-cb843e30f080",
@@ -237,10 +242,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "abb",
-      "createdAt": "2024-08-24T23:35:00.593Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "36597296-e5a4-41e3-95e2-824e7de1cb29",
@@ -257,10 +259,7 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
-      "courseId": "COMP1511",
-      "description": "abb",
-      "createdAt": "2024-08-24T23:35:53.339Z"
+      "courseId": "COMP1511"
     },
     {
       "groupId": "759e18b1-594a-4104-8927-28e4a8f97e58",
@@ -277,10 +276,29 @@
           "courses": null
         }
       ],
-      "leader": "a0586183-b39f-4364-b6a6-62956996a102",
+      "courseId": "COMP1511"
+    }
+  ],
+  "requests": [
+    {
+      "requestId": "0",
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "groupId": "a8d24eae-efe5-4692-a99e-28d7cd234f5a",
+      "status": "Withdrawn"
+    },
+    {
+      "requestId": "1",
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "groupId": "e287e350-640d-48a3-acb4-8354ddc4a1d0",
       "courseId": "COMP1511",
-      "description": "b",
-      "createdAt": "2024-08-24T23:36:55.212Z"
+      "status": "Rejected"
+    },
+    {
+      "requestId": "2",
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "groupId": "be6376ad-58f8-45c0-b0fb-9cc275a95001",
+      "courseId": "COMP1511",
+      "status": "Withdrawn"
     }
   ],
   "requests": [
@@ -355,6 +373,46 @@
     {
       "userId": "a0586183-b39f-4364-b6a6-62956996a102",
       "tokenId": "6856cea4-783d-4d6b-bea9-35b1a828f91f"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "dcba83f6-b641-47ee-bdd6-b845397c8768"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "15b91a8b-86d3-4c82-8c0e-6dfdb3cc75d5"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "d3947513-0a20-40ac-886b-b24946885d1e"
+    },
+    {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "tokenId": "35e9ed4e-ffb2-4528-8f8c-7bf0de5402d1"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "03c3aa16-571f-4d90-a326-cc8594b89193"
+    },
+    {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "tokenId": "a8dc131c-8f94-4861-ab83-3f465c9f1fde"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "ea4d0c9b-110d-4df0-bbee-2f8421d401a4"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "d08bcac6-dfad-4e15-a3ae-f2d4703ab1b3"
+    },
+    {
+      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
+      "tokenId": "5bf8d3c0-2397-4a50-aac9-03c2c874a018"
+    },
+    {
+      "userId": "a0586183-b39f-4364-b6a6-62956996a102",
+      "tokenId": "46e1571d-8304-4675-8c6d-7a5bb7fdbb26"
     },
     {
       "userId": "a0586183-b39f-4364-b6a6-62956996a102",
