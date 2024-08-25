@@ -6,6 +6,7 @@ import {
   viewOtherUser,
   viewCurUser,
   loginUser,
+  editUser,
 } from "../../lib/users/user-functions";
 
 const router = express.Router();
@@ -75,8 +76,19 @@ router.get("/users/:userid", (req, res) => {
 });
 
 // Edit user
-router.put("/users/:userid", (req, res) => {
-  res.status(200).json({ hi: "hello world from api!" });
+router.put("/users/edit/:token", (req, res) => {
+  const token: string | undefined = req.headers.authorization;
+  if (typeof token == undefined) {
+    res.status(400).json({ error: "Not logged in!" });
+  } else {
+    const payload: User = req.body;
+    const user: User | string = editUser(payload, token as string);
+    if (typeof user == "string") {
+      res.status(400).json({ error: user });
+    } else {
+      res.status(200).json({ user: user });
+    }
+  }
 });
 
 // Delete user

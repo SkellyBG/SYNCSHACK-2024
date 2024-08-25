@@ -16,6 +16,8 @@ export const Route = createRootRoute({
 function Root() {
   const { me } = useMe();
 
+  const userCourses = me?.courses || [];
+
   return (
     <>
       <div className="bg-[url('../Landing_Page_BG.png')] bg-[left_calc(-200%)_top_calc(100%)] bg-cover bg-no-repeat min-h-[calc(100vh-93px)] font-inter">
@@ -29,19 +31,23 @@ function Root() {
             {me && (
               <>
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="hover:underline text-lg  font-bold">
+                  <DropdownMenuTrigger className="hover:underline text-lg font-bold">
                     Your Courses
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    {["COMP1511", "COMP1521", "COMP1531"].map((course) => (
-                      <DropdownMenuItem key={course}>
-                        <div className="flex items-center justify-between">
-                          <Link to={`/courses/${course}`} className="text-lg">
-                            {course}
-                          </Link>
-                        </div>
-                      </DropdownMenuItem>
-                    ))}
+                    {userCourses.length > 0 ? (
+                      userCourses.map((course) => (
+                        <DropdownMenuItem key={course}>
+                          <div className="flex items-center justify-between">
+                            <Link to={`/courses/${course}`} className="text-lg">
+                              {course}
+                            </Link>
+                          </div>
+                        </DropdownMenuItem>
+                      ))
+                    ) : (
+                      <DropdownMenuItem>No courses available</DropdownMenuItem>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
 

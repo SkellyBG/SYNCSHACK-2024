@@ -38,7 +38,99 @@
       "role": "leader",
       "targetGrade": "HD",
       "bio": "i am cool",
-      "courses": null
+      "courses": [
+        "COMP1531"
+      ]
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
+      "courses": [
+        "COMP1531"
+      ]
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
+      "courses": [
+        "COMP1531",
+        "COMP1521"
+      ]
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
+      "courses": [
+        "COMP1531",
+        "COMP1521",
+        "COMP3900"
+      ]
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
+      "courses": [
+        "COMP1531"
+      ]
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
+      "courses": [
+        "COMP1531",
+        "COMP1521"
+      ]
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
+      "courses": [
+        "COMP1531",
+        "COMP1521",
+        "COMP3900"
+      ]
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "name": "oklol",
+      "email": "ok.lol@gmail.com",
+      "password": "oklol",
+      "role": "leader",
+      "targetGrade": "HD",
+      "bio": "i am cool",
+      "courses": [
+        "COMP1531"
+      ]
     }
   ],
   "newUsers": [
