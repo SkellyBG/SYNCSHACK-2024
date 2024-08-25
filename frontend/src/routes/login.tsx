@@ -37,12 +37,13 @@ function Login() {
   };
 
   return (
-    <div className="bg-[url('../../Landing_Page_BG.png')] bg-cover bg-no-repeat min-h-[calc(100vh-117px)] font-inter">
-      <div className="min-h-[calc(100vh-65px)] flex flex-col items-center justify-center">
+    <div className="bg-[url('../Landing_Page_BG.png')] bg-bottom bg-cover bg-no-repeat min-h-[calc(100vh-168px)]">
+      <div className="min-h-[calc(100vh-116px)] flex flex-col items-center justify-center">
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-center">
             Login
           </h1>
+          <div className="mt-4 font-bold opacity-75">Welcome back to project pals!</div>
         </div>
 
         <Card className="w-full max-w-md">
@@ -77,10 +78,10 @@ function Login() {
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
                 Or{" "}
-                <Link to="/sign-up" className="text-blue-500 hover:underline">
+                <Link to="/sign-up" className="text-blue-500 hover:underline hover:text-blue-600">
                   sign up
                 </Link>{" "}
-                to create a new account
+                to create a new account.
               </p>
             </div>
           </CardContent>
