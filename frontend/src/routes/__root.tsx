@@ -86,7 +86,6 @@ function Root() {
           </div>
         </div>
         <Outlet />
-        <TanStackRouterDevtools />
       </div>
     </>
   );
