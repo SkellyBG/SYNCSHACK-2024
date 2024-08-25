@@ -38,8 +38,6 @@
       "role": "leader",
       "targetGrade": "HD",
       "bio": "aa",
-      "uni": "uts",
-      "degree": "computer-science",
       "courses": null
     },
     {
@@ -386,29 +384,6 @@
       "requestId": "0",
       "userId": "5eb51896-8f38-4fca-826e-062a09551285",
       "groupId": "a8d24eae-efe5-4692-a99e-28d7cd234f5a",
-      "status": "Withdrawn"
-    },
-    {
-      "requestId": "1",
-      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
-      "groupId": "e287e350-640d-48a3-acb4-8354ddc4a1d0",
-      "courseId": "COMP1511",
-      "status": "Rejected"
-    },
-    {
-      "requestId": "2",
-      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
-      "groupId": "be6376ad-58f8-45c0-b0fb-9cc275a95001",
-      "courseId": "COMP1511",
-      "status": "Withdrawn"
-    }
-  ],
-  "requests": [
-    {
-      "requestId": "0",
-      "userId": "5eb51896-8f38-4fca-826e-062a09551285",
-      "groupId": "a8d24eae-efe5-4692-a99e-28d7cd234f5a",
-      "courseId": "COMP1511",
       "status": "Pending"
     }
   ],
@@ -531,6 +506,10 @@
     {
       "userId": "5eb51896-8f38-4fca-826e-062a09551285",
       "tokenId": "35e9ed4e-ffb2-4528-8f8c-7bf0de5402d1"
+    },
+    {
+      "userId": "c032ee73-f01b-45ff-8cdc-bc6c3e1b2b3b",
+      "tokenId": "39372af7-ee9a-413b-a0dc-92c493f203f1"
     }
   ]
 }
